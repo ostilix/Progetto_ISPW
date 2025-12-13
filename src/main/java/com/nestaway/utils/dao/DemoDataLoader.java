@@ -1,0 +1,67 @@
+package com.nestaway.utils.dao;
+
+import com.nestaway.exception.EncryptionException;
+import com.nestaway.model.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class DemoDataLoader {
+
+
+    private DemoDataLoader() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+    public static void load() throws EncryptionException {
+        MemoryDatabase.getHosts().clear();
+        MemoryDatabase.getStays().clear();
+        MemoryDatabase.getAvailabilities().clear();
+        MemoryDatabase.getBookings().clear();
+        MemoryDatabase.getReviews().clear();
+        MemoryDatabase.getNotifications().clear();
+        DemoIndex.getBookingStayMap().clear();
+
+        // Host
+        Host host = new Host("Demo", "Demo", "Demo@gmail.com", "demo", "demo@gmail.com", "demo");
+        MemoryDatabase.getHosts().add(host);
+
+        // Stay
+        Stay stay = new Stay(1, "Casa Roma", "Bellissima casa nel centro di Roma", "Rome", "Via Testaccio 12", 75.00, 4, 2, 1, host.getUsername());
+        MemoryDatabase.getStays().add(stay);
+
+        // Stay
+        Stay stay2 = new Stay(2, "Casa Milano", "Bellissima casa nel centro di Milano", "Milan", "Via Roma 12", 75.00, 4, 2, 1, host.getUsername());
+        MemoryDatabase.getStays().add(stay2);
+
+        // Availability
+        LocalDate today = LocalDate.now();
+        for (int i = 0; i < 7; i++) {
+            Availability availability = new Availability(i + 1, today.plusDays(i), true, stay.getIdStay());
+            MemoryDatabase.getAvailabilities().add(availability);
+        }
+
+        for (int i = 0; i < 7; i++) {
+            Availability availability2 = new Availability(i + 8, today.plusDays(i), true, stay2.getIdStay());
+            MemoryDatabase.getAvailabilities().add(availability2);
+        }
+
+        // Booking
+        Booking booking = new Booking("Luigi", "Verdi", "luigi.verdi@gmail.com", "3214567890",
+                today.plusDays(1), today.plusDays(2), 2, true);
+        booking.setIdAndCodeBooking("A2j0f030c5");
+        MemoryDatabase.getBookings().add(booking);
+
+        DemoIndex.getBookingStayMap().put(booking.getCodeBooking(), stay.getIdStay());
+
+        // Review
+        Review review = new Review(booking.getCodeBooking(), 5, "Esperienza fantastica!",
+                today.plusDays(0), stay.getIdStay());
+        MemoryDatabase.getReviews().add(review);
+
+        // Notification
+        Notification notification = new Notification(TypeNotif.NEW, stay.getName(),
+                booking.getCodeBooking(), LocalDateTime.of(today, java.time.LocalTime.now()));
+        MemoryDatabase.getNotifications().add(notification);
+    }
+}
