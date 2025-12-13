@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="..">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited build.yml">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,10 +68,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -154,7 +153,7 @@
       <workItem from="1765443555958" duration="15588000" />
       <workItem from="1765530121730" duration="4456000" />
       <workItem from="1765616330495" duration="12177000" />
-      <workItem from="1765643016401" duration="3766000" />
+      <workItem from="1765643016401" duration="4717000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -468,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765645335194</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Edited build.yml">
+      <option name="closed" value="true" />
+      <created>1765647307454</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1765647307454</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +500,8 @@
     </ignored-roots>
     <MESSAGE value="First commit" />
     <MESSAGE value=".." />
-    <option name="LAST_COMMIT_MESSAGE" value=".." />
+    <MESSAGE value="Edited build.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited build.yml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
