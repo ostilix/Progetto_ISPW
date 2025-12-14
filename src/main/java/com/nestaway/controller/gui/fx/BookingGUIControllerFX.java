@@ -98,7 +98,7 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
             booking.setOnlinePayment(payPalRadio.isSelected());
 
             return booking;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException _) {
             throw new IncorrectDataException("Invalid data");
         }
     }

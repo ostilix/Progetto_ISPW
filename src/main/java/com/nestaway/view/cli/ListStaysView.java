@@ -18,7 +18,7 @@ public class ListStaysView extends AbstractView{
         while (true) {
             try {
                 return input.nextInt();
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException _) {
                 showMessage(INPUT_ERROR);
                 input.next();
             }
@@ -60,7 +60,7 @@ public class ListStaysView extends AbstractView{
     private int getIntChoice(Scanner input) {
         try {
             return input.nextInt();
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException _) {
             input.next();
             return -1;
         }

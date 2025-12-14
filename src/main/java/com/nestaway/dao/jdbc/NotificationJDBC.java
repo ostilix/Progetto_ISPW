@@ -28,7 +28,6 @@ public class NotificationJDBC implements NotificationDAO {
                 while (rs.next()) {
                     notifications.add(fromResultSet(rs));
                 }
-                rs.close();
             }
             return notifications;
         } catch (SQLException e) {

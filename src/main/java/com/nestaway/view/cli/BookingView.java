@@ -52,7 +52,7 @@ public class BookingView extends AbstractView {
                 } else {
                     throw new InputMismatchException();
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException _) {
                 showError("Invalid input! Please enter 0 or 1.");
                 input.next();
             }

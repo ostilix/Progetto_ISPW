@@ -50,7 +50,7 @@ public class LoginAndRegisterView extends AbstractView {
                 } else {
                     throw new InputMismatchException();
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException _) {
                 showMessage("Invalid input!");
                 input.next();
             }

@@ -5,6 +5,7 @@ import com.nestaway.exception.IncorrectDataException;
 import com.nestaway.model.*;
 
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToBeanConverter {
@@ -29,9 +30,11 @@ public class ToBeanConverter {
         List<Availability> availabilities = stay.getAvailability();
 
         if (availabilities != null) {
+            List<AvailabilityBean> availabilityBean = new ArrayList<>();
             for (Availability availability : availabilities) {
-                stayBean.setAvailability(stayBean.getAvailability());
+                availabilityBean.add(fromAvailabilityToAvailabilityBean(availability));
             }
+            stayBean.setAvailability(stayBean.getAvailability());
         }
 
         if (stay.getReviews() != null) {

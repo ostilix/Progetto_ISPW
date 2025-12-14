@@ -10,20 +10,16 @@ import com.nestaway.utils.view.fx.FilesFXML;
 import com.nestaway.utils.view.fx.PageManagerSingleton;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
@@ -157,24 +153,21 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
             ObservableList<Node> elements = reviewsCards[i].getChildren();
             ReviewBean review = reviews.get(pageIndex * maxReviews + i);
 
-            // Logica di recupero nodi (identica alla tua)
             Label ratingLabel;
             Node ratingNode = elements.get(0);
-            if (ratingNode instanceof HBox) {
-                HBox outer = (HBox) ratingNode;
-                Node inner = outer.getChildren().get(0);
-                if (inner instanceof HBox) {
-                    ratingLabel = (Label) ((HBox) inner).getChildren().get(0);
+            if (ratingNode instanceof HBox outer) {
+                Node inner = outer.getChildren().getFirst();
+                if (inner instanceof HBox innerBox) {
+                    ratingLabel = (Label) innerBox.getChildren().getFirst();
                 } else {
                     ratingLabel = (Label) inner;
                 }
             } else {
-                // Fallback semplice se la struttura cambia
                 ratingLabel = (Label) ratingNode;
             }
 
-            Label commentLabel = (Label) ((HBox) elements.get(1)).getChildren().get(0);
-            Label dateLabel = (Label) ((HBox) elements.get(2)).getChildren().get(0);
+            Label commentLabel = (Label) ((HBox) elements.get(1)).getChildren().getFirst();
+            Label dateLabel = (Label) ((HBox) elements.get(2)).getChildren().getFirst();
 
             ratingLabel.setText("Rating: " + review.getRating() + "/5");
             commentLabel.setText("Comment: " + review.getComment());

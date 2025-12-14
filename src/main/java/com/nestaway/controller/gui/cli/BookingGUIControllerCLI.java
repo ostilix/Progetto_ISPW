@@ -59,7 +59,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
         String[] as = new String[futureAvailabilities.size()];
         int i = 0;
         for (AvailabilityBean a : futureAvailabilities) {
-            String status = a.getIsAvailable() ? "Available" : "Unavailable";
+            String status = Boolean.TRUE.equals(a.getIsAvailable()) ? "Available" : "Unavailable";
             as[i] = String.format("%d - Date: %s → %s%n", i + 1, a.getDate().toString(), status);
             i++;
         }

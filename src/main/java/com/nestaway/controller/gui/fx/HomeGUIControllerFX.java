@@ -68,7 +68,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
         try {
             checkIn = LocalDate.parse(checkInStr);
             checkOut = LocalDate.parse(checkOutStr);
-        } catch (Exception e) {
+        } catch (Exception _) {
             setMsg(message, "Dates must be in the format yyyy-MM-dd.");
             return;
         }
@@ -89,7 +89,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
                 setMsg(message, "Number of guests must be greater than zero.");
                 return;
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException _) {
             setMsg(message, "Guests must be a valid positive number.");
             return;
         }

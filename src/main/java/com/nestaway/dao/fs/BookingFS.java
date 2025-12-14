@@ -31,13 +31,9 @@ public class BookingFS implements BookingDAO {
 
             int maxId = 0;
             for (String[] row : allRows) {
-                try {
-                    int currentId = Integer.parseInt(row[2]);
-                    if (currentId > maxId) {
+                int currentId = parseBookingId(row);
+                if (currentId > maxId) {
                         maxId = currentId;
-                    }
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    throw new DAOException("Error in addBooking: " + e.getMessage(), e, GENERIC);
                 }
             }
 
@@ -79,6 +75,13 @@ public class BookingFS implements BookingDAO {
         }
     }
 
+    private int parseBookingId(String[] row) throws DAOException {
+        try {
+            return Integer.parseInt(row[2]);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new DAOException("Error in addBooking: " + e.getMessage(), e, GENERIC);
+        }
+    }
 
     private Predicate<String[]> uniquePredicate(String idStay, String email, String telephone) {
         return r -> (r[9].equals(idStay) && (r[4].equals(email) || r[5].equals(telephone)));

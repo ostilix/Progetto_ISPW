@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="..">
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="added try-with-resources">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/AvailabilityJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/AvailabilityJDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/BookingJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/BookingJDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/HostJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/HostJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/MainFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/BookingGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/BookingGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/HomeGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/HomeGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/StayDetailsGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/StayDetailsGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/BookingGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/BookingGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/HomeGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/HomeGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/ListStaysGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/ListStaysGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/StayDetailsGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/StayDetailsGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/BookingDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/BookingDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/BookingFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/BookingFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/NotificationJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/NotificationJDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/ReviewJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/ReviewJDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/StayJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/StayJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/ToBeanConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/ToBeanConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/view/cli/ReturningHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/view/cli/ReturningHome.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,40 +58,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.HashTest.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainDEMO.executor": "Run",
-    "Application.MainFX.executor": "Run",
-    "JUnit.BookStayControllerTest.executor": "Run",
-    "JUnit.LoginControllerTest.executor": "Run",
-    "JUnit.TestBookingBean.executor": "Run",
-    "JUnit.UserTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Ostil/Desktop/Università_Stefano/TOR_VERGATA/III_anno/Ingegneria_del_Software_e_Progettazione_Web/NestAway_progetto/NestAway",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.HashTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainDEMO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainFX.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookStayControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LoginControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestBookingBean.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ostil/Desktop/Università_Stefano/TOR_VERGATA/III_anno/Ingegneria_del_Software_e_Progettazione_Web/NestAway_progetto/NestAway&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.nestaway.model" />
@@ -161,15 +168,8 @@
       <workItem from="1765643016401" duration="6259000" />
       <workItem from="1765705453558" duration="784000" />
       <workItem from="1765706263801" duration="3406000" />
-      <workItem from="1765711256326" duration="2164000" />
-    </task>
-    <task id="LOCAL-00006" summary="..">
-      <option name="closed" value="true" />
-      <created>1752072359132</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1752072359132</updated>
+      <workItem from="1765711256326" duration="2678000" />
+      <workItem from="1765724327893" duration="2317000" />
     </task>
     <task id="LOCAL-00007" summary="..">
       <option name="closed" value="true" />
@@ -555,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765712660097</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added try-with-resources">
+      <option name="closed" value="true" />
+      <created>1765713504764</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1765713504765</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +593,8 @@
     <MESSAGE value="Edited build.yml" />
     <MESSAGE value="Edited pom.xml and build.yml" />
     <MESSAGE value=".." />
-    <option name="LAST_COMMIT_MESSAGE" value=".." />
+    <MESSAGE value="added try-with-resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="added try-with-resources" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

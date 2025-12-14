@@ -1,14 +1,14 @@
 package com.nestaway.utils.view.cli;
 
 public class ReturningHome {
-    private Boolean returningHome;
+    private Boolean returnHome;
     public ReturningHome() {
-        this.returningHome = false;
+        this.returnHome = false;
     }
     public void setReturningHome(Boolean returningHome) {
-        this.returningHome = returningHome;
+        this.returnHome = returningHome;
     }
     public Boolean getReturningHome() {
-        return returningHome;
+        return returnHome;
     }
 }

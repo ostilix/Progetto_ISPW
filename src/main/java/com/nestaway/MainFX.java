@@ -23,7 +23,7 @@ public class MainFX extends Application {
         if ("DEMO".equalsIgnoreCase(System.getProperty("DAO_TYPE"))) {
             try {
                 DemoDataLoader.load();
-            } catch (EncryptionException e) {
+            } catch (EncryptionException _) {
                 throw new OperationFailedException("Failed to load demo data");
             }
         }

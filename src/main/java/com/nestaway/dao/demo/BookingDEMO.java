@@ -42,7 +42,7 @@ public class BookingDEMO implements BookingDAO {
     @Override
     public List<Booking> selectBookingByStay(Integer idStay) throws DAOException {
         try {
-            Set<String> codes = DemoIndex.getBookingStayMap().entrySet().stream().filter(entry -> entry.getValue().equals(idStay)).map(entry -> entry.getKey()).collect(Collectors.toSet());
+            Set<String> codes = DemoIndex.getBookingStayMap().entrySet().stream().filter(entry -> entry.getValue().equals(idStay)).map(java.util.Map.Entry::getKey).collect(Collectors.toSet());
 
             return MemoryDatabase.getBookings().stream().filter(b -> codes.contains(b.getCodeBooking())).toList();
         } catch (Exception e) {

@@ -57,7 +57,7 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
             int i = 0;
             for (var review : stay.getReviews()) {
                 reviewsFormatted[i] = String.format(
-                        "Rating: %d/5\nComment: %s\nDate: %s\n",
+                        "Rating: %d/5%nComment: %s%nDate: %s%n",
                         review.getRating(),
                         review.getComment(),
                         review.getDate().toString()

@@ -56,7 +56,7 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
         try {
             checkIn = LocalDate.parse(checkInStr);
             checkOut = LocalDate.parse(checkOutStr);
-        } catch (Exception e) {
+        } catch (Exception _) {
             System.out.println("Dates must be in the format yyyy-MM-dd.");
             start();
             return;
@@ -83,7 +83,7 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
                 start();
                 return;
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException _) {
             System.out.println("Guests must be a valid positive number.");
             start();
             return;

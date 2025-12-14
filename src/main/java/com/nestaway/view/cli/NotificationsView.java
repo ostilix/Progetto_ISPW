@@ -49,7 +49,7 @@ public class NotificationsView extends AbstractView{
                 if (choice.equals("N")) {
                     break;
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException _) {
                 showMessage("Invalid input!");
                 input.next();
             }
