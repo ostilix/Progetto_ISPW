@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited build.yml and pom.xml">
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited build.yml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -152,7 +152,7 @@
       <workItem from="1765443555958" duration="15588000" />
       <workItem from="1765530121730" duration="4456000" />
       <workItem from="1765616330495" duration="12177000" />
-      <workItem from="1765643016401" duration="5262000" />
+      <workItem from="1765643016401" duration="6259000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -490,7 +490,31 @@
       <option name="project" value="LOCAL" />
       <updated>1765648520732</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Edited build.yml and pom.xml">
+      <option name="closed" value="true" />
+      <created>1765648762915</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1765648762915</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Edited build.yml">
+      <option name="closed" value="true" />
+      <created>1765648884378</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1765648884378</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Edited build.yml">
+      <option name="closed" value="true" />
+      <created>1765649107065</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1765649107065</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,9 +539,9 @@
     </ignored-roots>
     <MESSAGE value="First commit" />
     <MESSAGE value=".." />
-    <MESSAGE value="Edited build.yml" />
     <MESSAGE value="Edited build.yml and pom.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited build.yml and pom.xml" />
+    <MESSAGE value="Edited build.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited build.yml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
