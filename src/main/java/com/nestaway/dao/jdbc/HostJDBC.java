@@ -28,10 +28,11 @@ public class HostJDBC implements HostDAO {
     public Host selectHost(String idHost) throws DAOException {
         Host host = null;
         try (PreparedStatement pstmt = HostQueries.selectHost(SingletonConnector.getConnection(), idHost)){
-            ResultSet rs = pstmt.executeQuery();
+            try (ResultSet rs = pstmt.executeQuery()) {
 
-            if (rs.first()) {
-                host = fromResultSet(rs);
+                if (rs.first()) {
+                    host = fromResultSet(rs);
+                }
             }
         } catch (SQLException | EncryptionException e) {
             throw new DAOException("Error in selectHost: " + e.getMessage(), e, GENERIC);
@@ -44,10 +45,11 @@ public class HostJDBC implements HostDAO {
     public Host selectHost(String username, String password) throws DAOException {
         Host host = null;
         try (PreparedStatement pstmt = HostQueries.selectHost(SingletonConnector.getConnection(), username, password)){
-             ResultSet rs = pstmt.executeQuery();
+            try (ResultSet rs = pstmt.executeQuery()) {
 
-            if (rs.first()) {
-                host = fromResultSet(rs);
+                if (rs.first()) {
+                    host = fromResultSet(rs);
+                }
             }
         } catch (SQLException | EncryptionException e) {
             throw new DAOException("Error in selectHost: " + e.getMessage(), e, GENERIC);

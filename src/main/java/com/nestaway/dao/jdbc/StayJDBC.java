@@ -32,9 +32,10 @@ public class StayJDBC implements StayDAO {
     public List<Stay> selectStayByCity(String city) throws DAOException {
         List<Stay> stays = new ArrayList<>();
         try (PreparedStatement pstmt = StayQueries.selectStayByCity(SingletonConnector.getConnection(), city)) {
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                stays.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    stays.add(fromResultSet(rs));
+                }
             }
             return stays;
         } catch (SQLException e) {
@@ -46,9 +47,10 @@ public class StayJDBC implements StayDAO {
     public List<Stay> selectStayByHost(String idHost) throws DAOException {
         List<Stay> stays = new ArrayList<>();
         try (PreparedStatement pstmt = StayQueries.selectStayByHost(SingletonConnector.getConnection(), idHost)) {
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                stays.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    stays.add(fromResultSet(rs));
+                }
             }
             return stays;
         } catch (SQLException e) {
@@ -59,9 +61,10 @@ public class StayJDBC implements StayDAO {
     @Override
     public Stay selectStay(Integer idStay) throws DAOException {
         try (PreparedStatement pstmt = StayQueries.selectStay(SingletonConnector.getConnection(), idStay)) {
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return fromResultSet(rs);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return fromResultSet(rs);
+                }
             }
             throw new DAOException("Stay with ID " + idStay + " not found", GENERIC);
         } catch (SQLException e) {
@@ -78,10 +81,11 @@ public class StayJDBC implements StayDAO {
 
         try (PreparedStatement pstmt = StayQueries.selectAvailableStays(SingletonConnector.getConnection(), city, numGuests, checkIn, checkOut, numNights)) {
 
-            ResultSet rs = pstmt.executeQuery();
+            try (ResultSet rs = pstmt.executeQuery()) {
 
-            while (rs.next()) {
-                availableStays.add(fromResultSet(rs));
+                while (rs.next()) {
+                    availableStays.add(fromResultSet(rs));
+                }
             }
             return availableStays;
 

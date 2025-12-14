@@ -23,9 +23,10 @@ public class ReviewJDBC implements ReviewDAO {
     public List<Review> selectByStay(Integer idStay) throws DAOException {
         List<Review> reviews = new ArrayList<>();
         try (PreparedStatement pstmt = ReviewQueries.selectByStay(SingletonConnector.getConnection(), idStay)){
-             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                reviews.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    reviews.add(fromResultSet(rs));
+                }
             }
             return reviews;
         } catch (SQLException e) {

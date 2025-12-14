@@ -23,9 +23,10 @@ public class AvailabilityJDBC implements AvailabilityDAO {
     public List<Availability> selectByStay(Integer idStay) throws DAOException {
         List<Availability> availabilities = new ArrayList<>();
         try (PreparedStatement pstmt = AvailabilityQueries.selectByStay(SingletonConnector.getConnection(), idStay)){
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                availabilities.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    availabilities.add(fromResultSet(rs));
+                }
             }
             return availabilities;
         } catch (SQLException e) {
@@ -37,9 +38,10 @@ public class AvailabilityJDBC implements AvailabilityDAO {
     public List<Availability> selectInRange(Integer idStay, LocalDate from, LocalDate to) throws DAOException {
         List<Availability> availabilities = new ArrayList<>();
         try (PreparedStatement pstmt = AvailabilityQueries.selectInRange(SingletonConnector.getConnection(), idStay, from, to)){
-             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                availabilities.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    availabilities.add(fromResultSet(rs));
+                }
             }
             return availabilities;
         } catch (SQLException e) {

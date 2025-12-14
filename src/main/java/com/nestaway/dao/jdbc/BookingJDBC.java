@@ -30,13 +30,14 @@ public class BookingJDBC implements BookingDAO {
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         int id;
         try (PreparedStatement pstmtCount = BookingQueries.countBookings(SingletonConnector.getConnection(), idStay)){
-            ResultSet rs = pstmtCount.executeQuery();
+            try (ResultSet rs = pstmtCount.executeQuery()) {
 
-            if (rs.next()) {
-                id = rs.getInt(1) + 1;
-                booking.setIdAndCodeBooking(id);
-            } else {
-                throw new DAOException("Unable to calculate booking ID", GENERIC);
+                if (rs.next()) {
+                    id = rs.getInt(1) + 1;
+                    booking.setIdAndCodeBooking(id);
+                } else {
+                    throw new DAOException("Unable to calculate booking ID", GENERIC);
+                }
             }
 
             try (PreparedStatement pstmtInsert = BookingQueries.insertBooking(SingletonConnector.getConnection(), booking.getCodeBooking(), booking.getFirstName(), booking.getLastName(), booking.getEmailAddress(), booking.getTelephone(), booking.getCheckInDate(), booking.getCheckOutDate(), booking.getNumGuests(), (Boolean.TRUE.equals(booking.getOnlinePayment()) ? 1 : 0), idStay)) {
@@ -56,9 +57,10 @@ public class BookingJDBC implements BookingDAO {
     public List<Booking> selectBookingByStay(Integer idStay) throws DAOException {
         List<Booking> bookings = new ArrayList<>();
         try (PreparedStatement pstmt = BookingQueries.selectBookingByStay(SingletonConnector.getConnection(), idStay)){
-             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                bookings.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    bookings.add(fromResultSet(rs));
+                }
             }
             return bookings;
         } catch (SQLException e) {
@@ -69,11 +71,12 @@ public class BookingJDBC implements BookingDAO {
     @Override
     public Booking selectBookingByCode(String codeBooking) throws DAOException {
         try (PreparedStatement pstmt = BookingQueries.selectBookingByCode(SingletonConnector.getConnection(), codeBooking)){
-             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return fromResultSet(rs);
-            } else {
-                return null;
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return fromResultSet(rs);
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException e) {
             throw new DAOException("Error in selectBookingByCode " + e.getMessage(), e, GENERIC);

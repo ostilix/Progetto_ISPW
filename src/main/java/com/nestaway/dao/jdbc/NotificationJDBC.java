@@ -24,11 +24,12 @@ public class NotificationJDBC implements NotificationDAO {
     public List<Notification> selectNotifications(String idHost) throws DAOException {
         List<Notification> notifications = new ArrayList<>();
         try (PreparedStatement pstmt = NotificationQueries.selectNotifications(SingletonConnector.getConnection(), idHost)){
-             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                notifications.add(fromResultSet(rs));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    notifications.add(fromResultSet(rs));
+                }
+                rs.close();
             }
-            rs.close();
             return notifications;
         } catch (SQLException e) {
             throw new DAOException("Error selectNotifications: " + e.getMessage(), e, GENERIC);
