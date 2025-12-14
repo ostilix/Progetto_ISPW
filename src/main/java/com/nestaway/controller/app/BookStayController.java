@@ -53,7 +53,6 @@ public class BookStayController {
             for (Stay stay : stays) {
                 result.add(ToBeanConverter.fromStayToStayBean(stay));
             }
-
             return result;
 
         } catch (DAOException e) {
