@@ -3,14 +3,11 @@ package com.nestaway.controller.app;
 import com.nestaway.bean.AvailabilityBean;
 import com.nestaway.bean.BookingBean;
 import com.nestaway.bean.StayBean;
-import com.nestaway.utils.dao.factory.FactorySingletonDAO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,10 +16,7 @@ class BookStayControllerTest {
     private static BookStayController controller;
 
     @BeforeAll
-    static void setup() throws Exception{
-        Field instance = FactorySingletonDAO.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
+    static void setup() {
         System.setProperty("DAO_TYPE", "JDBC");
         controller = new BookStayController();
     }
@@ -53,9 +47,7 @@ class BookStayControllerTest {
         BookingBean booking = new BookingBean();
         booking.setFirstName("Test");
         booking.setLastName("User");
-        int randomId = new Random().nextInt(10000);
-
-        booking.setEmailAddress("test" + randomId + "@example.com");
+        booking.setEmailAddress("test.user@example.com");
         booking.setTelephone("+391234567890");
         booking.setCheckInDate(LocalDate.of(2026, 9, 10));
         booking.setCheckOutDate(LocalDate.of(2026, 9, 11));

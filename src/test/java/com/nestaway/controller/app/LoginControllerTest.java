@@ -40,8 +40,8 @@ class LoginControllerTest {
     void testRegister() throws IncorrectDataException, OperationFailedException, DuplicateEntryException{
         HostBean hostBean = new HostBean();
         int randomId = new Random().nextInt(10000);
-        String username = "pieroneri" + randomId;
-        String email = "piero.neri" + randomId + "@gmail.com";
+        String username = "usr" + randomId;
+        String email = "usr" + randomId + "@gmail.com";
         hostBean.setUsername(username);
         hostBean.setPassword("pieroneri");
         hostBean.setEmailAddress(email);
@@ -50,7 +50,7 @@ class LoginControllerTest {
         hostBean.setInfoPayPal(email);
         LoginController loginController = new LoginController();
         UserBean user = loginController.register(hostBean);
-        assertEquals("pieroneri", user.getUsername());
+        assertEquals("usr" + randomId, user.getUsername());
         assertNotEquals("pieroneri", user.getPassword());
     }
 }
