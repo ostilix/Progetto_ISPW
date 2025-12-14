@@ -5,7 +5,6 @@ import com.nestaway.exception.IncorrectDataException;
 import com.nestaway.model.*;
 
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToBeanConverter {
