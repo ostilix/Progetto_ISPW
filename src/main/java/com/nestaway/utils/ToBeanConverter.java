@@ -30,11 +30,11 @@ public class ToBeanConverter {
         List<Availability> availabilities = stay.getAvailability();
 
         if (availabilities != null) {
-            List<AvailabilityBean> availabilityBean = new ArrayList<>();
+            List<AvailabilityBean> availabilityBean = new java.util.ArrayList<>();
             for (Availability availability : availabilities) {
                 availabilityBean.add(fromAvailabilityToAvailabilityBean(availability));
             }
-            stayBean.setAvailability(stayBean.getAvailability());
+            stayBean.setAvailability(availabilityBean);
         }
 
         if (stay.getReviews() != null) {
