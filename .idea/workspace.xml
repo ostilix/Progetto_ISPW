@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Launch analysis" />
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Corrected tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,15 +154,7 @@
       <workItem from="1765705453558" duration="784000" />
       <workItem from="1765706263801" duration="3406000" />
       <workItem from="1765711256326" duration="2678000" />
-      <workItem from="1765724327893" duration="4368000" />
-    </task>
-    <task id="LOCAL-00011" summary="..">
-      <option name="closed" value="true" />
-      <created>1752075628303</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1752075628303</updated>
+      <workItem from="1765724327893" duration="4675000" />
     </task>
     <task id="LOCAL-00012" summary="..">
       <option name="closed" value="true" />
@@ -548,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765728195606</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Corrected tests">
+      <option name="closed" value="true" />
+      <created>1765729017241</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1765729017241</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +582,8 @@
     <MESSAGE value="corrected some code smells" />
     <MESSAGE value="corrected one code smell" />
     <MESSAGE value="Launch analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Launch analysis" />
+    <MESSAGE value="Corrected tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
