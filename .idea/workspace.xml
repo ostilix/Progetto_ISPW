@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited build.yml">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
-    </list>
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited pom.xml and build.yml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +65,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.JavaFX",
@@ -155,15 +153,7 @@
       <workItem from="1765643016401" duration="6259000" />
       <workItem from="1765705453558" duration="784000" />
       <workItem from="1765706263801" duration="3406000" />
-      <workItem from="1765711256326" duration="1036000" />
-    </task>
-    <task id="LOCAL-00004" summary="First commit">
-      <option name="closed" value="true" />
-      <created>1752055635108</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1752055635108</updated>
+      <workItem from="1765711256326" duration="1375000" />
     </task>
     <task id="LOCAL-00005" summary="..">
       <option name="closed" value="true" />
@@ -549,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765712300247</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Edited pom.xml and build.yml">
+      <option name="closed" value="true" />
+      <created>1765712395239</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1765712395239</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +576,8 @@
     <MESSAGE value="Edited pom.xml" />
     <MESSAGE value="Added build.yml" />
     <MESSAGE value="Edited build.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited build.yml" />
+    <MESSAGE value="Edited pom.xml and build.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited pom.xml and build.yml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
