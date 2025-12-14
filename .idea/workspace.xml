@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited pom.xml">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +154,7 @@
       <workItem from="1765616330495" duration="12177000" />
       <workItem from="1765643016401" duration="6259000" />
       <workItem from="1765705453558" duration="784000" />
-      <workItem from="1765706263801" duration="241000" />
+      <workItem from="1765706263801" duration="970000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -527,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765705574947</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Edited pom.xml">
+      <option name="closed" value="true" />
+      <created>1765706725575</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1765706725575</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +559,8 @@
     <MESSAGE value="Edited build.yml and pom.xml" />
     <MESSAGE value="Edited build.yml" />
     <MESSAGE value=".." />
-    <option name="LAST_COMMIT_MESSAGE" value=".." />
+    <MESSAGE value="Edited pom.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited pom.xml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
