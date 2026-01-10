@@ -26,6 +26,6 @@ public class UserBean {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password; //qui è in chiaro, viene cifrata nel controller
     }
 }

@@ -17,6 +17,7 @@ public class BookingDEMO implements BookingDAO {
     @Override
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         try {
+            //verifico se esiste già
             boolean exists = DemoIndex.getBookingStayMap().entrySet().stream().anyMatch(entry -> {
                         String code = entry.getKey();
                         Integer mappedIdStay = entry.getValue();
@@ -26,11 +27,12 @@ public class BookingDEMO implements BookingDAO {
             if (exists) {
                 throw new DAOException("Booking already exists", DUPLICATE);
             }
-
+            //genero id
             int idBooking = nextId(idStay);
             booking.setIdAndCodeBooking(idBooking);
-
+            //aggiungo la prenotazione
             MemoryDatabase.getBookings().add(booking);
+            //aggiorno indice
             DemoIndex.getBookingStayMap().put(booking.getCodeBooking(), idStay);
 
             return booking;
@@ -42,6 +44,7 @@ public class BookingDEMO implements BookingDAO {
     @Override
     public List<Booking> selectBookingByStay(Integer idStay) throws DAOException {
         try {
+            //trovo i codici delle prentazioni associati allo stay
             Set<String> codes = DemoIndex.getBookingStayMap().entrySet().stream().filter(entry -> entry.getValue().equals(idStay)).map(java.util.Map.Entry::getKey).collect(Collectors.toSet());
 
             return MemoryDatabase.getBookings().stream().filter(b -> codes.contains(b.getCodeBooking())).toList();

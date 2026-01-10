@@ -5,6 +5,7 @@ import java.util.List;
 
 public abstract class Subject {
 
+    //lista protetta, contiene gli oggetti che voglione essere notificati
     protected final List<Observer> observers = new ArrayList<>();
 
     public void registerObserver(Observer observer){

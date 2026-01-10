@@ -30,18 +30,19 @@ public class ReviewController {
 
     public void addReview(ReviewBean reviewBean) throws OperationFailedException, NotFoundException, DuplicateEntryException {
         try {
+            //verifico l'esistenza della prenotazione
             Booking booking = bookingDAO.selectBookingByCode(reviewBean.getBookingCode());
             if (booking == null) {
                 throw new NotFoundException("No booking found with code: " + reviewBean.getBookingCode());
             }
-
+            //verifico che il soggiorno sia finito
             if (LocalDate.now().isBefore(booking.getCheckOutDate())) {
                 throw new OperationFailedException("You can write a review only after your stay ends.");
             }
-
+            //creo il model
             Review review = new Review(reviewBean.getBookingCode(), reviewBean.getRating(),
                     reviewBean.getComment(), reviewBean.getDate(), reviewBean.getIdStay());
-
+            //inserico nel DB tramite DAO
             reviewDAO.insertReview(review);
 
         } catch (DAOException e) {
@@ -58,6 +59,7 @@ public class ReviewController {
         try {
             List<Review> reviews = reviewDAO.selectByStay(idStay);
             List<ReviewBean> result = new ArrayList<>();
+            //converto da Model a Bean per la GUI
             for (Review r : reviews) {
                 result.add(ToBeanConverter.fromReviewToReviewBean(r));
             }

@@ -14,12 +14,13 @@ import java.util.List;
 public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
 
     private final ListStaysView listStaysView = new ListStaysView();
-    private List<StayBean> stays;
+    private List<StayBean> stays; //utilizzata come "cache" locale degli alloggi trovati
     private final String city;
     private final LocalDate checkInDate;
     private final LocalDate checkOutDate;
     private final Integer numGuests;
 
+    //recupero i parametri dalla Sessione
     ListStaysGUIControllerCLI(Integer session, ReturningHome returningHome){
         this.currentSession = session;
         this.city = SessionManager.getSessionManager().getSessionFromId(session).getCity();
@@ -31,9 +32,11 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
 
     @Override
     public void start() {
+        //istanzio il controller
         BookStayController bookStayController = new BookStayController();
 
         try {
+            //trovo gli alloggi
             stays = bookStayController.findStays(city, checkInDate, checkOutDate, numGuests);
 
             int choice;
@@ -53,6 +56,7 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
         }
     }
 
+    //mostro gli alloggi trovati
     private void showStays() {
         String[] staysFormatted = new String[this.stays.size()];
         int i = 0;
@@ -71,24 +75,29 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
             i++;
         }
 
+        //passo l'array di stringhe alla View
         listStaysView.showStays(staysFormatted);
         start();
     }
 
     private void selectStay() {
+        //recupero il numero dell'alloggio
         int num = listStaysView.selectStay();
         if (num < 1 || num > stays.size()) {
             listStaysView.showMessage("Stay not found!");
             start();
         } else {
+            //recupero il Bean dell'alloggio corrispondente
             StayBean stay = stays.get(num - 1);
             if (stay != null) {
+                //salvo l'alloggio scelto nella sessione
                 SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(stay);
 
                 StayDetailsGUIControllerCLI stayDetailsController = new StayDetailsGUIControllerCLI(currentSession, returningHome);
                 stayDetailsController.start();
             }
             SessionManager.getSessionManager().getSessionFromId(currentSession).resetStay();
+            //ricarico la pagina se non devo tornare alla home
             if (Boolean.FALSE.equals(returningHome.getReturningHome())) {
                 start();
             }

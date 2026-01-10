@@ -16,11 +16,12 @@ public class HostDEMO implements HostDAO {
     @Override
     public Host selectHost(String idHost) throws DAOException {
         try {
+            //simulo login
             Host host = MemoryDatabase.getHosts().stream().filter(h -> h.getUsername().equals(idHost)).findFirst().orElse(null);
 
             if (host != null) {
-                host.setTransientParams();
-                addNotifAndStays(host);
+                host.setTransientParams(); //inizializzo campi non persistenti
+                addNotifAndStays(host); //carico notifiche e alloggi
             }
 
             return host;
@@ -68,8 +69,10 @@ public class HostDEMO implements HostDAO {
         if (host == null) return;
 
         try {
+            //trovo alloggi dell'host
             List<Stay> stays = MemoryDatabase.getStays().stream().filter(s -> s.getHostUsername().equals(host.getUsername())).toList();
 
+            //trovo le notifiche dell'host
             List<Notification> notifications = MemoryDatabase.getNotifications().stream().filter(n -> stays.stream().anyMatch(s -> s.getName().equals(n.getNameStay()))).toList();
 
             host.addStay(stays);

@@ -19,6 +19,7 @@ public class StayDEMO implements StayDAO {
         try {
             for (Stay stay : MemoryDatabase.getStays()) {
                 if (stay.getIdStay().equals(idStay)) {
+                    //quando carico uno stay, ricarico le disponibilità attuali
                     refreshAvailability(stay);
                     return stay;
                 }
@@ -68,6 +69,7 @@ public class StayDEMO implements StayDAO {
             List<Stay> result = new ArrayList<>();
 
             for (Stay stay : allStays) {
+                //filtro per citta e capienza
                 if (stay.getCity().equalsIgnoreCase(city) && stay.getMaxGuests() >= numGuests) {
 
                     refreshAvailability(stay);

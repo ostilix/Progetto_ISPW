@@ -35,16 +35,21 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void login() {
         try {
+            //chiedo username e password
             String [] loginInfo = view.login();
             if(loginInfo[0].isEmpty() || loginInfo[1].isEmpty()) {
                 view.showMessage("Please fill in all fields!");
             }
+            //popolo il Bean
             UserBean user = new UserBean();
             user.setUsername(loginInfo[0]);
             user.setPassword(loginInfo[1]);
+            //chiamo il controller
             LoginController loginController = new LoginController();
             user = loginController.login(user);
+            //salvo utente loggato nella sessione
             SessionManager.getSessionManager().getSessionFromId(currentSession).setUser(user);
+            //passo alla home dell'host
             HostHomeGUIControllerCLI organizerHomeGUIController = new HostHomeGUIControllerCLI(currentSession,returningHome);
             organizerHomeGUIController.start();
         } catch (IncorrectDataException | NotFoundException e) {
@@ -59,10 +64,12 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void register() {
         try {
+            //raccolgo dati registrazione
             String [] registerInfo = view.register();
             if(registerInfo[0].isEmpty() || registerInfo[1].isEmpty() || registerInfo[2].isEmpty() || registerInfo[3].isEmpty() || registerInfo[4].isEmpty() || registerInfo[5].isEmpty()) {
                 view.showMessage("Please fill in all fields!");
             }
+            //popolo il Bean
             HostBean host = new HostBean();
             host.setFirstName(registerInfo[0]);
             host.setLastName(registerInfo[1]);
@@ -70,9 +77,12 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
             host.setUsername(registerInfo[3]);
             host.setInfoPayPal(registerInfo[4]);
             host.setPassword(registerInfo[5]);
+            //chiamo il controller
             LoginController loginController = new LoginController();
             UserBean user = loginController.register(host);
+            //login automatico dopo la registrazione
             SessionManager.getSessionManager().getSessionFromId(currentSession).setUser(user);
+            //avvio la home
             HostHomeGUIControllerCLI hostHomeGUIController = new HostHomeGUIControllerCLI(currentSession, returningHome);
             hostHomeGUIController.start();
         } catch (IncorrectDataException e) {

@@ -15,6 +15,7 @@ public class AvailabilityDEMO implements AvailabilityDAO {
     @Override
     public List<Availability> selectByStay(Integer idStay) throws DAOException {
         try {
+            //simulo query, filtro per id
             return MemoryDatabase.getAvailabilities().stream().filter(a -> a.getIdStay().equals(idStay)).toList();
         } catch (Exception e) {
             throw new DAOException("Error in selectByStay DEMO", e, GENERIC);

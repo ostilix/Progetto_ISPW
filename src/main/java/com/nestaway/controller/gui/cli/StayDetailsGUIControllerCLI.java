@@ -8,10 +8,11 @@ import com.nestaway.view.cli.StayDetailsView;
 public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private final StayDetailsView stayDetailsView = new StayDetailsView();
-    private StayBean stay;
+    private StayBean stay; //alloggio da mostrare
 
     public StayDetailsGUIControllerCLI(Integer session, ReturningHome returningHome) {
         this.currentSession = session;
+        //recupero alloggio dalla sessione
         this.stay = SessionManager.getSessionManager().getSessionFromId(session).getStay();
         this.returningHome = returningHome;
     }
@@ -34,6 +35,7 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
     }
 
     private void showInfo() {
+        //preparo l'array
         String[] info = {
                 "Stay Name: " + stay.getName(),
                 "Description:" + stay.getDescription(),
@@ -45,6 +47,7 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
                 "Number of Bathrooms: " + stay.getNumBathrooms(),
                 "Host Username:\n " + stay.getHostUsername()
         };
+        //chiamo la view per mostrare i dettagli
         stayDetailsView.showInfo(info);
         start();
     }

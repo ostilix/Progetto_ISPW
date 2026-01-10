@@ -25,6 +25,7 @@ public class AvailabilityJDBC implements AvailabilityDAO {
         try (PreparedStatement pstmt = AvailabilityQueries.selectByStay(SingletonConnector.getConnection(), idStay)){
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    //converto riga DB in oggetto Availability
                     availabilities.add(fromResultSet(rs));
                 }
             }

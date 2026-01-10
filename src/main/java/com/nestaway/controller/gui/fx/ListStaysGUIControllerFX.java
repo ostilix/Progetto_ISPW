@@ -66,14 +66,20 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
 
     VBox[] stayCards;
 
+    //lista degli alloggi recuperati
     List<StayBean> stays;
 
     @FXML
     public void selectStay(ActionEvent stay) {
+        //recupero il bottone cliccato
         Button button = (Button) stay.getSource();
+        //recupero il nome dell'alloggio dal bottone cliccato
         String nameStay = button.getText();
+        //cerco l'alloggio
         StayBean stayBean = searchStay(nameStay);
+        //imposto l'alloggio selezionato nella sessione corrente
         SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(stayBean);
+        //vado alla pagine dei dettagli
         goNext(FilesFXML.STAY.getPath());
     }
 
@@ -94,6 +100,7 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         stayImages = new ImageView[]{stayImage1, stayImage2, stayImage3, stayImage4, stayImage5, stayImage6};
         int maxCards = 6;
 
+        //chiamo il controller per cercare gli alloggi
         BookStayController bookStayController = new BookStayController();
         stays = bookStayController.findStays(SessionManager.getSessionManager().getSessionFromId(session).getCity(), SessionManager.getSessionManager().getSessionFromId(session).getCheckIn(), SessionManager.getSessionManager().getSessionFromId(session).getCheckOut(), SessionManager.getSessionManager().getSessionFromId(session).getNumGuests());
 
@@ -103,26 +110,31 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         }
         numberPage.setPageCount(numPages);
         numberPage.setMaxPageIndicatorCount(Math.min(numPages, 10));
+        //tramite un listener quando cambio pagina chiamo createPage
         numberPage.currentPageIndexProperty().addListener(((obs, oldIndex, newIndex) -> createPage(newIndex.intValue(), maxCards)));
+        //carico la prima pagina
         createPage(0, maxCards);
     }
 
     private void createPage(Integer pageIndex, Integer maxStays) {
         resetMsg(errorMsg);
 
+        //nascondo le card prima di riempirle
         for (int i = 0; i < stayCards.length; i++) {
             stayCards[i].setVisible(false);
             stayImages[i].setImage(null);
             stayImages[i].setClip(null);
         }
 
+        //calcolo quanti alloggi mostrare nella pagina
         int max = Math.min(maxStays, stays.size() - pageIndex * maxStays);
 
         for (int i = 0; i < max; i++) {
+            //recupero il Bean corretto
             StayBean stay = stays.get(pageIndex * maxStays + i);
-
+            //rendo visibile la card
             stayCards[i].setVisible(true);
-
+            //carico i dettagli di quell'alloggio
             ObservableList<Node> elements = stayCards[i].getChildren();
             ((Button) elements.get(0)).setText(stay.getName());
             ((Label) elements.get(1)).setText("Price: " + stay.getPricePerNight() + "€/night");

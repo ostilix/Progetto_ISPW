@@ -4,11 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited tests">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
+    <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="Edited tests and build.yml">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/nestaway/controller/app/BookStayControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/nestaway/controller/app/BookStayControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/nestaway/controller/app/LoginControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/nestaway/controller/app/LoginControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/bean/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/bean/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/BookStayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/BookStayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/NotificationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/NotificationsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/OnlinePaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/OnlinePaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/app/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/AbstractGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/AbstractGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/BookingGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/BookingGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/HomeGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/HomeGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/ListStaysGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/ListStaysGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/LoginAndRegisterGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/LoginAndRegisterGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/NotificationsGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/NotificationsGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/StayDetailsGUIControllerCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/cli/StayDetailsGUIControllerCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/AbstractGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/AbstractGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/BookingGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/BookingGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/HomeGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/HomeGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/ListStaysGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/ListStaysGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/NotificationsGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/NotificationsGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/StayDetailsGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/StayDetailsGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/AvailabilityDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/AvailabilityDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/BookingDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/BookingDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/HostDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/HostDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/NotificationDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/NotificationDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/StayDEMO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/demo/StayDEMO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/AvailabilityFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/AvailabilityFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/BookingFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/fs/BookingFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/AvailabilityJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/AvailabilityJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/BookingJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/BookingJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/HostJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/HostJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/SingletonConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/dao/jdbc/SingletonConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/PayPalAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/PayPalAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/PaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/PaymentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/engineering/payment/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/CSVHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/CSVHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/DemoDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/DemoDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/DemoIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/DemoIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/MemoryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/MemoryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/DEMOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/DEMOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/FSFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/FSFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/FactorySingletonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/FactorySingletonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/JDBCFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/JDBCFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/TypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/dao/factory/TypeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/view/fx/PageManagerSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/utils/view/fx/PageManagerSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logger/logFile.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logger/logFile.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,15 +202,15 @@
       <workItem from="1765705453558" duration="784000" />
       <workItem from="1765706263801" duration="3406000" />
       <workItem from="1765711256326" duration="2678000" />
-      <workItem from="1765724327893" duration="6870000" />
-    </task>
-    <task id="LOCAL-00014" summary="..">
-      <option name="closed" value="true" />
-      <created>1752080241416</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1752080241416</updated>
+      <workItem from="1765724327893" duration="7480000" />
+      <workItem from="1765731866903" duration="13000" />
+      <workItem from="1765789083123" duration="3592000" />
+      <workItem from="1765909860974" duration="93000" />
+      <workItem from="1767805496506" duration="2988000" />
+      <workItem from="1767862919890" duration="4449000" />
+      <workItem from="1767884491313" duration="2410000" />
+      <workItem from="1767946541457" duration="13758000" />
+      <workItem from="1768033465146" duration="8806000" />
     </task>
     <task id="LOCAL-00015" summary="..">
       <option name="closed" value="true" />
@@ -553,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765730488383</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Edited tests and build.yml">
+      <option name="closed" value="true" />
+      <created>1765731330275</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1765731330276</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +640,8 @@
     <MESSAGE value="Corrected tests" />
     <MESSAGE value="Edited build.yml" />
     <MESSAGE value="Edited tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited tests" />
+    <MESSAGE value="Edited tests and build.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited tests and build.yml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

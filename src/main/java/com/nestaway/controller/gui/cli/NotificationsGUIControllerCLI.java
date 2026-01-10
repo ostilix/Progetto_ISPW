@@ -29,6 +29,7 @@ public class NotificationsGUIControllerCLI extends AbstractGUIControllerCLI {
     public void start(){
 
         try {
+            //scarico le notifiche dell'utente interessato
             NotificationsController notificationsController = new NotificationsController();
             notifications = notificationsController.getNotifications((HostBean) user);
 
@@ -64,18 +65,22 @@ public class NotificationsGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void deleteNotifs() {
         try {
+            //chiedo quali cancellare
             List<Integer> numDelete = view.deleteNotification();
             NotificationsController notificationsController = new NotificationsController();
+            //cancella tutte le notifiche se -1
             if (numDelete.contains(-1)) {
                 notificationsController.deleteAllNotifications((HostBean) SessionManager.getSessionManager().getSessionFromId(currentSession).getUser());
                 notifications.clear();
             } else {
+                //cancella notifiche specifiche
                 List<NotificationBean> notifsToDelete = new ArrayList<>();
                 for (int i : numDelete) {
                     if (i < 0 || i > notifications.size()) {
                         view.showError("Invalid input!");
                         break;
                     } else {
+                        //passo da indice utente (parte da 1) a indice lista (parte da 0)
                         notifsToDelete.add(notifications.get(i - 1));
                     }
                 }

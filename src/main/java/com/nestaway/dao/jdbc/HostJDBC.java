@@ -37,6 +37,7 @@ public class HostJDBC implements HostDAO {
         } catch (SQLException | EncryptionException e) {
             throw new DAOException("Error in selectHost: " + e.getMessage(), e, GENERIC);
         }
+        //carico anche le notifiche e gli alloggi dell'host
         addNotifAndStays(host);
         return host;
     }

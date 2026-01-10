@@ -3,6 +3,7 @@ package com.nestaway.utils.dao.factory;
 import com.nestaway.dao.*;
 import com.nestaway.dao.fs.*;
 
+//concrete factory, comunico tramite file CSV
 public class FSFactory extends FactorySingletonDAO {
     public AvailabilityDAO getAvailabilityDAO(){
         return new AvailabilityFS();

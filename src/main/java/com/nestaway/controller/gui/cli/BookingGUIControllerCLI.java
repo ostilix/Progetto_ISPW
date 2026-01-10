@@ -32,6 +32,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
         BookStayController controller = new BookStayController();
 
         try {
+            //recupero le disponibilità per mostrare eventualemente il calendario
             this.availabilities = controller.findAvailability(stay);
 
             int choice;
@@ -54,6 +55,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void showAvailabilities() {
         LocalDate today = LocalDate.now();
+        //filtro per mostrare solo date future
         List<AvailabilityBean> futureAvailabilities = availabilities.stream().filter(a -> !a.getDate().isBefore(today)).toList();
 
         String[] as = new String[futureAvailabilities.size()];
@@ -70,6 +72,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
 
     public void bookStay() {
         try {
+            //raccolgo dati dall'utente
             String[] data = bookingView.insertBookingData();
             BookingBean booking = new BookingBean();
 
@@ -77,6 +80,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
                 throw new IncorrectDataException("All fields are required!");
             }
 
+            //popolo il Bean
             booking.setFirstName(data[0]);
             booking.setLastName(data[1]);
             booking.setEmailAddress(data[2]);
@@ -91,6 +95,7 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
             List<AvailabilityBean> filtered = availabilities.stream()
                     .filter(a -> !a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckIn()) && a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckOut())).toList();
 
+            //chiamo il controller
             controller.sendReservation(stay, booking, filtered);
             bookingView.showMessage("Booking successful! Your booking code is: " + booking.getCodeBooking());
         } catch (OperationFailedException | DuplicateEntryException e) {

@@ -43,19 +43,21 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
     @FXML
     public void searchCityEnter(KeyEvent event){
         if(event.getCode().toString().equals("ENTER")) {
-            searchStay();
+            searchStay(); //avvio ricerca come se avessi cliccato il bottone cerca
         }
     }
 
     @FXML
     public void searchStay() {
-        resetMsg(errorMsg, message);
+        resetMsg(errorMsg, message); //pulisco messaggi vecchi
 
+        //recupero i dati dai campi
         String city = searchCity.getText();
         String checkInStr = searchCheckIn.getText();
         String checkOutStr = searchCheckOut.getText();
         String guestsStr = searchGuests.getText();
 
+        //valido i campi
         if (city.isEmpty() || checkInStr.isEmpty() || checkOutStr.isEmpty() || guestsStr.isEmpty()) {
             setMsg(message, "Insert all fields to continue!");
             return;
@@ -93,13 +95,13 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
             setMsg(message, "Guests must be a valid positive number.");
             return;
         }
-
+        //se tutto è valido salvo i parametri nella sessione
         try {
             SessionManager.getSessionManager().getSessionFromId(currentSession).setCity(city);
             SessionManager.getSessionManager().getSessionFromId(currentSession).setCheckIn(checkIn);
             SessionManager.getSessionManager().getSessionFromId(currentSession).setCheckOut(checkOut);
             SessionManager.getSessionManager().getSessionFromId(currentSession).setNumGuests(guests);
-
+            //mostro i risultati della ricerca
             PageManagerSingleton.getInstance().goNext(FilesFXML.LIST_STAYS.getPath(), currentSession);
         } catch (OperationFailedException e) {
             setMsg(errorMsg, e.getMessage());
@@ -117,6 +119,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
         backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
         backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
 
+        //se l'utente ha già cercato qualcosa recupero quei dati e li rimetto automaticamente nei campi
         Session userSession = SessionManager.getSessionManager().getSessionFromId(currentSession);
 
         if (userSession.getCity() != null) {

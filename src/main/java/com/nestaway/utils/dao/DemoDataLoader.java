@@ -5,14 +5,14 @@ import com.nestaway.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+//popolo il "Memory Database" all'avvio
 public class DemoDataLoader {
 
 
     private DemoDataLoader() {
         throw new UnsupportedOperationException("Utility class");
     }
-
+    //resetto e popolo il "DB"
     public static void load() throws EncryptionException {
         MemoryDatabase.getHosts().clear();
         MemoryDatabase.getStays().clear();

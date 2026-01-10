@@ -22,13 +22,13 @@ public class BookingFS implements BookingDAO {
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
-
+            //controllo se ci sono duplicati
             if (!handler.find(uniquePredicate(String.valueOf(idStay), booking.getEmailAddress(), booking.getTelephone())).isEmpty()) {
                 throw new DAOException("Booking already exists", DUPLICATE);
             }
 
             List<String[]> allRows = handler.readAll();
-
+            //leggo id più alto al momento
             int maxId = 0;
             for (String[] row : allRows) {
                 int currentId = parseBookingId(row);
@@ -41,6 +41,7 @@ public class BookingFS implements BookingDAO {
 
             booking.setIdAndCodeBooking(newId);
 
+            //scrivo in coda
             List<String[]> rows = new ArrayList<>();
             rows.add(toCsvRecord(idStay, booking));
             handler.writeAll(rows);

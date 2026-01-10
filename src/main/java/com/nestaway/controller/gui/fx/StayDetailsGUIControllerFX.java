@@ -106,9 +106,10 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
     public void initialize(Integer session) throws OperationFailedException {
         this.currentSession = session;
         resetMsg(errorMsg);
-
+        //recupera l'alloggio dalla sessione
         stay = SessionManager.getSessionManager().getSessionFromId(currentSession).getStay();
 
+        //popola i dettagli dell'alloggio
         title.setText(stay.getName());
         city.setText(stay.getCity());
         address.setText(stay.getAddress());
@@ -126,9 +127,11 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
         reviewsCards = new VBox[]{reviewCard1, reviewCard2, reviewCard3};
         int maxCards = 3;
 
+        //recupero le Review dal controller
         ReviewController reviewController = new ReviewController();
         reviews = reviewController.getReviewsByStay(stay.getIdStay());
 
+        //configuro paginazione recensioni
         int numPages = (reviews.size() / maxCards);
         if (reviews.size() % maxCards != 0) {
             numPages++;
@@ -142,6 +145,7 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
     private void createPage(Integer pageIndex, Integer maxReviews) {
         resetMsg(errorMsg);
 
+        //rendo le card inizialmente non visibili
         reviewCard1.setVisible(false);
         reviewCard2.setVisible(false);
         reviewCard3.setVisible(false);
@@ -149,6 +153,7 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
         int max = Math.min(maxReviews, reviews.size() - pageIndex * maxReviews);
 
         for (int i = 0; i < max; i++) {
+            //rendo le card visibili una ad una
             reviewsCards[i].setVisible(true);
             ObservableList<Node> elements = reviewsCards[i].getChildren();
             ReviewBean review = reviews.get(pageIndex * maxReviews + i);

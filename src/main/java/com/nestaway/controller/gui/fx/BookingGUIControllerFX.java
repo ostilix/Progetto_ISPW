@@ -63,13 +63,18 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
     public void bookStay() {
         resetMsg(errorMsg, message);
         try {
+            //raccolgo i dati dal form
             BookingBean booking = getBooking();
             BookStayController bookStayController = new BookStayController();
 
+            //recupero le disponibilità
             List<AvailabilityBean> allAvailabilities = bookStayController.findAvailability(stay);
+            //filtro le disponibilità per il periodo richiesto
             List<AvailabilityBean> filteredAvailabilities = allAvailabilities.stream().filter(a -> !a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckIn()) && a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckOut())).toList();
 
+            //invio la prenotazione
             bookStayController.sendReservation(stay, booking, filteredAvailabilities);
+            //mostro il risultato
             setMsg(message, "Booking successful! Your booking code is: " + booking.getCodeBooking());
         } catch (IncorrectDataException | DuplicateEntryException | DAOException | NotFoundException e) {
             setMsg(message, e.getMessage());
@@ -108,6 +113,7 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
         resetMsg(errorMsg, message);
 
         stay = SessionManager.getSessionManager().getSessionFromId(session).getStay();
+        //rendo i radio botton esclusivi
         paymentMethod = new ToggleGroup();
         payPalRadio.setToggleGroup(paymentMethod);
         onSiteRadio.setToggleGroup(paymentMethod);

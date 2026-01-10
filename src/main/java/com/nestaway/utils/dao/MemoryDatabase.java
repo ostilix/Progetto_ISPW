@@ -5,8 +5,9 @@ import com.nestaway.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//"Database" in RAM
 public final class MemoryDatabase {
-
+    //simulo tabelle DB
     private static final List<Stay> stays = new ArrayList<>();
     private static final List<Booking> bookings = new ArrayList<>();
     private static final List<Review> reviews = new ArrayList<>();

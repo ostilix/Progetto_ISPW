@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.GENERIC;
 
+//implemento interfaccia AvailabilityDAO
 public class AvailabilityFS implements AvailabilityDAO {
 
     private static final String FILE_PATH = "src/main/resources/data/Availability.csv";
@@ -20,9 +21,11 @@ public class AvailabilityFS implements AvailabilityDAO {
     @Override
     public List<Availability> selectByStay(Integer idStay) throws DAOException {
         try {
+            //recupero le righe dell'alloggio scelto
             List<String[]> rows = handler.find(r -> Integer.parseInt(r[3]) == idStay);
             List<Availability> result = new ArrayList<>();
             for (String[] row : rows) {
+                //converto da array a oggetto
                 result.add(fromCsvRecord(row));
             }
             return result;
@@ -35,8 +38,9 @@ public class AvailabilityFS implements AvailabilityDAO {
     public List<Availability> selectInRange(Integer idStay, LocalDate from, LocalDate to) throws DAOException {
         try {
             List<String[]> rows = handler.find(r -> {
-                int stayId = Integer.parseInt(r[3]);
-                LocalDate date = LocalDate.parse(r[1]);
+                int stayId = Integer.parseInt(r[3]); //converto in formato int
+                LocalDate date = LocalDate.parse(r[1]); //converto in formato LocalDate
+                //verifico disponibilità
                 return stayId == idStay && (!date.isBefore(from) && !date.isAfter(to));
             });
             List<Availability> result = new ArrayList<>();
@@ -52,8 +56,9 @@ public class AvailabilityFS implements AvailabilityDAO {
     @Override
     public void updateAvailability(LocalDate checkIn, LocalDate checkOut, Integer idStay) throws DAOException {
         try {
+            //leggo tutto il file
             List<String[]> allRows = handler.readAll();
-            boolean changed = false;
+            boolean changed = false; //se non trovo nulla non scrivo nulla
 
             for (String[] row : allRows) {
                 int currentStayId = Integer.parseInt(row[3]);
@@ -66,6 +71,7 @@ public class AvailabilityFS implements AvailabilityDAO {
             }
 
             if (changed) {
+                //riscrivo con i dati aggiornati
                 handler.writeCleaned(allRows);
             }
 

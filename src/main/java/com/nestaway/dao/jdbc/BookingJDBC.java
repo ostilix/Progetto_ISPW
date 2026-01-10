@@ -40,6 +40,7 @@ public class BookingJDBC implements BookingDAO {
                 }
             }
 
+            //inserimento Booking
             try (PreparedStatement pstmtInsert = BookingQueries.insertBooking(SingletonConnector.getConnection(), booking.getCodeBooking(), booking.getFirstName(), booking.getLastName(), booking.getEmailAddress(), booking.getTelephone(), booking.getCheckInDate(), booking.getCheckOutDate(), booking.getNumGuests(), (Boolean.TRUE.equals(booking.getOnlinePayment()) ? 1 : 0), idStay)) {
                 pstmtInsert.executeUpdate();
             }

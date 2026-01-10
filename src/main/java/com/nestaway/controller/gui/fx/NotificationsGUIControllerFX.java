@@ -63,7 +63,7 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
     @FXML
     public void deleteSelected() {
         resetMsg(errorMsg);
-
+        //recupero elementi selezionati nella tabella
         ObservableList<NotificationBean> selectedItems = table.getSelectionModel().getSelectedItems();
         try {
             if (selectedItems.isEmpty()) {
@@ -83,15 +83,19 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
         resetMsg(errorMsg);
         this.currentSession = session;
 
+        //recupero l'utente corrente
         hostBean = (HostBean) SessionManager.getSessionManager().getSessionFromId(currentSession).getUser();
         NotificationsController notificationsController = new NotificationsController();
         notifications = notificationsController.getNotifications(hostBean);
+        //converto formato
         for (NotificationBean notification : notifications) {
             notification.setDateAndTime(notification.getDateAndTime().withZoneSameInstant(ZoneId.systemDefault()));
         }
 
+        //creo una lista osservabile
         showNotifications = FXCollections.observableArrayList(notifications);
 
+        //associo le colonne con le proprietà del Bean
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
         stay.setCellValueFactory(new PropertyValueFactory<>("nameStay"));
         code.setCellValueFactory(new PropertyValueFactory<>("bookingCode"));
@@ -110,6 +114,7 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
         });
 
         table.editableProperty().setValue(false);
+        //abilito la selezione multipla
         table.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
         table.setItems(showNotifications);
 

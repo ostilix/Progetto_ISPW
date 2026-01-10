@@ -15,7 +15,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//un solo page manager, gestsisce l'unica finestra aperta dell'applicazione
 public class PageManagerSingleton {
 
     private final Stage primaryStage;

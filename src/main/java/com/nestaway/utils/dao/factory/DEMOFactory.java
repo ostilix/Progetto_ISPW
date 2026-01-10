@@ -3,6 +3,7 @@ package com.nestaway.utils.dao.factory;
 import com.nestaway.dao.*;
 import com.nestaway.dao.demo.*;
 
+//concrete factory
 public class DEMOFactory extends FactorySingletonDAO {
     public AvailabilityDAO getAvailabilityDAO(){
         return new AvailabilityDEMO();

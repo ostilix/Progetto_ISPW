@@ -41,10 +41,13 @@ public class NotificationsController {
 
     public void deleteNotifications(List<NotificationBean> notifBean, HostBean hostBean) throws OperationFailedException {
         try {
+            //converto da Bean a Model per il DAO
             List<Notification> notifs = new ArrayList<>();
             for (NotificationBean notif : notifBean) {
+                //ricostruisco oggetto Model dai dati Bean
                 notifs.add(new Notification(TypeNotif.valueOf(notif.getType()), notif.getNameStay(), notif.getBookingCode(), notif.getDateAndTime().toLocalDateTime()));
             }
+            //elimino nel DB
             notificationDAO.deleteNotification(hostBean.getUsername(), notifs);
         } catch (DAOException e) {
             Logger.getGlobal().log(Level.WARNING, e.getMessage(), e.getCause());
@@ -61,12 +64,14 @@ public class NotificationsController {
         }
     }
 
+    //recupero notifiche da mostrare
     public List<NotificationBean> getNotifications(HostBean hostBean) throws OperationFailedException, NotFoundException {
         try {
             List<Notification> notifs = notificationDAO.selectNotifications(hostBean.getUsername());
             if (notifs.isEmpty()) {
                 throw new NotFoundException("No notifications found.");
             }
+            //converto da Model a Bean per la GUI
             List<NotificationBean> notifBean = new ArrayList<>();
             for (Notification notif : notifs) {
                 notifBean.add(ToBeanConverter.fromNotificationToNotificationBean(notif));
