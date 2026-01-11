@@ -71,6 +71,7 @@ public class Session {
         this.numGuests = null;
     }
 
+    //mantengo utente loggato
     public void softReset(){
         this.stay = null;
         this.city = null;

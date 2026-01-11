@@ -3,6 +3,7 @@ package com.nestaway.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+//singleton
 public class SessionManager {
     private final List<Session> activeSession = new ArrayList<>();
     private static SessionManager instance = null;

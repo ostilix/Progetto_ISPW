@@ -22,7 +22,7 @@ public class Main {
 
         System.out.print("Choose VIEW_TYPE (CLI / FX): ");
         String viewType = scanner.nextLine().trim().toUpperCase();
-
+        //chiedo finche input non è valido
         while (!viewType.equals("CLI") && !viewType.equals("FX")) {
             System.out.print("Invalid input. Please enter CLI or FX: ");
             viewType = scanner.nextLine().trim().toUpperCase();
@@ -36,6 +36,7 @@ public class Main {
             daoType = scanner.nextLine().trim().toUpperCase();
         }
 
+        //variabili lette da FactorySingletonDAO
         System.setProperty(VIEW_TYPE, viewType);
         System.setProperty(DAO_TYPE, daoType);
 

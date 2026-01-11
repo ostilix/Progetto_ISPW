@@ -24,9 +24,11 @@ public class MainCLI {
                 logger.log(Level.SEVERE, "Error loading demo data", e);
             }
         }
-
+        //creo sessione utente
         Integer currentSession = SessionManager.getSessionManager().createSession();
+        //istanzio controller
         HomeGUIControllerCLI controller = new HomeGUIControllerCLI(currentSession, new ReturningHome());
+        //avvio menu
         controller.start();
     }
 }
