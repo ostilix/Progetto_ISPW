@@ -85,8 +85,8 @@ public class LoginAndRegisterGUIControllerFX extends AbstractGUIControllerFX {
             hostBean.setFirstName(strings[0]);
             hostBean.setLastName(strings[1]);
             hostBean.setEmailAddress(strings[2]);
-            hostBean.setUsername(strings[3]);
-            hostBean.setInfoPayPal(strings[4]);
+            hostBean.setInfoPayPal(strings[3]);
+            hostBean.setUsername(strings[4]);
             hostBean.setPassword(strings[5]);
             LoginController loginController = new LoginController();
             UserBean userBean = loginController.register(hostBean);

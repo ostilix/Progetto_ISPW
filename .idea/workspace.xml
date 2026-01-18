@@ -5,34 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9de3af15-d2ee-4387-a112-07f2e80bddb5" name="Changes" comment="..">
-      <change afterPath="$PROJECT_DIR$/Deliverables/Internal_steps.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/SequenceDiagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/State_Diagram.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/UC.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/User_Stories.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/VOPC.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b5b55b42-ae9e-4476-8330-a0e464bab411.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Activity_Diagram/Activity diagram.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Activity_Diagram/Activity_Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/DesignLevelDiagram/DesignLevelDiagram.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/DesignLevelDiagram/DesignLevelDiagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Functional_Requirements/Functional_requirements.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Internal_Steps/Internal_steps.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Sequence_Diagram/Sequence_diagram.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/Sequence_Diagram/Sequence_diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/State_Diagram/State_Diagram.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/State_Diagram/State_Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Payment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Registration.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UI_Design/png/Single Product.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UseCases/UC.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/UseCases/UC.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/User_Stories/User_Stories.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/VOPC/VOPC.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/VOPC/VOPC.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/bean/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/bean/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/LoginAndRegisterGUIControllerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/controller/gui/fx/LoginAndRegisterGUIControllerFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nestaway/view/cli/LoginAndRegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nestaway/view/cli/LoginAndRegisterView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/logger/logFile.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logger/logFile.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,40 +51,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.HashTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.MainDEMO.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainFX.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookStayControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoginControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBookingBean.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ostil/Desktop/Università_Stefano/TOR_VERGATA/III_anno/Ingegneria_del_Software_e_Progettazione_Web/NestAway_progetto/NestAway&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HashTest.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MainDEMO.executor": "Run",
+    "Application.MainFX.executor": "Run",
+    "JUnit.BookStayControllerTest.executor": "Run",
+    "JUnit.LoginControllerTest.executor": "Run",
+    "JUnit.TestBookingBean.executor": "Run",
+    "JUnit.UserTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Ostil/Desktop/Università_Stefano/TOR_VERGATA/III_anno/Ingegneria_del_Software_e_Progettazione_Web/NestAway_progetto/NestAway",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.nestaway.model" />
@@ -205,14 +183,8 @@
       <workItem from="1768662301890" duration="1258000" />
       <workItem from="1768739062611" duration="114000" />
       <workItem from="1768739213655" duration="88000" />
-    </task>
-    <task id="LOCAL-00017" summary="..">
-      <option name="closed" value="true" />
-      <created>1752081700428</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1752081700428</updated>
+      <workItem from="1768739360733" duration="359000" />
+      <workItem from="1768747738461" duration="3487000" />
     </task>
     <task id="LOCAL-00018" summary="..">
       <option name="closed" value="true" />
@@ -598,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768145063201</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="..">
+      <option name="closed" value="true" />
+      <created>1768739566389</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1768739566405</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

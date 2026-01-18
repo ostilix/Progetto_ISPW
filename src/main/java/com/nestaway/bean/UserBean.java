@@ -14,8 +14,8 @@ public class UserBean {
     public void setUsername(String username) throws IncorrectDataException {
         if(username == null || username.isEmpty()) {
             throw new IncorrectDataException("Username cannot be empty");
-        } else if (username.length() > 10) {
-            throw new IncorrectDataException("Too long username (max 10 characters)");
+        } else if (username.length() > 20) {
+            throw new IncorrectDataException("Too long username (max 20 characters)");
         }else{
             this.username = username;
         }

@@ -36,8 +36,8 @@ public class LoginAndRegisterView extends AbstractView {
         showMessage("Firstname: " + user[0]);
         showMessage("Lastname: " + user[1]);
         showMessage("Email: " + user[2]);
-        showMessage("PayPal Email: " + user[3]);
-        showMessage("Username: " + user[4]);
+        showMessage("Username: " + user[3]);
+        showMessage("PayPal Email: " + user[4]);
         showMessage("Password: " + user[5]);
 
         int choice;
