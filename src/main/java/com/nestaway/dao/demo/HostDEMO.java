@@ -20,8 +20,8 @@ public class HostDEMO implements HostDAO {
             Host host = MemoryDatabase.getHosts().stream().filter(h -> h.getUsername().equals(idHost)).findFirst().orElse(null);
 
             if (host != null) {
-                host.setTransientParams(); //inizializzo campi non persistenti
-                addNotifAndStays(host); //carico notifiche e alloggi
+                host.setTransientParams(); //resetto campi non persistenti
+                addNotifAndStays(host); //carico notifiche e alloggi aggiornati
             }
 
             return host;
@@ -37,8 +37,8 @@ public class HostDEMO implements HostDAO {
             Host host = MemoryDatabase.getHosts().stream().filter(h -> h.getUsername().equals(username) && h.getPassword().equals(password)).findFirst().orElse(null);
 
             if (host != null) {
-                host.setTransientParams();//inizializzo campi non persistenti
-                addNotifAndStays(host); //carico notifiche e alloggi
+                host.setTransientParams();//resetto campi non persistenti
+                addNotifAndStays(host); //carico notifiche e alloggi aggiornati
             }
 
             return host;

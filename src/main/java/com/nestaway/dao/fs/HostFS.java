@@ -29,9 +29,9 @@ public class HostFS implements HostDAO {
             if (rows.isEmpty()) return null;
             //prendo il risultato
             Host host = fromCsvRecord(rows.getFirst());
-            //i parametri transitori servono al bean
+            //resetto campi non persistenti
             host.setTransientParams();
-            //carico notifiche e alloggi collegati
+            //carico notifiche e alloggi collegati aggiornati
             addNotifAndStays(host);
             return host;
         } catch (IOException e) {
@@ -48,9 +48,9 @@ public class HostFS implements HostDAO {
             if (rows.isEmpty()) return null;
             //prendo il risultato
             Host host = fromCsvRecord(rows.getFirst());
-            //i parametri transitori servono al bean
+            //resetto campi non persistenti
             host.setTransientParams();
-            //carico notifiche e alloggi collegati
+            //carico notifiche e alloggi collegati aggiornati
             addNotifAndStays(host);
             return host;
         } catch (IOException e) {
