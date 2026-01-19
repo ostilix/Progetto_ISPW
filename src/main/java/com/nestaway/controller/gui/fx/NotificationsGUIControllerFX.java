@@ -54,7 +54,7 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
         try {
             NotificationsController notificationsController = new NotificationsController();
             notificationsController.deleteAllNotifications(hostBean);
-            showNotifications.clear();
+            showNotifications.clear(); //pulisco la tabella
         } catch (OperationFailedException e) {
             setMsg(errorMsg, e.getMessage());
         }
@@ -71,7 +71,7 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
             } else {
                 NotificationsController notificationsController = new NotificationsController();
                 notificationsController.deleteNotifications(selectedItems, hostBean);
-                showNotifications.removeAll(selectedItems);
+                showNotifications.removeAll(selectedItems); //rimuovo elementi
             }
         } catch (OperationFailedException e) {
             setMsg(errorMsg, e.getMessage());
@@ -83,7 +83,7 @@ public class NotificationsGUIControllerFX extends AbstractGUIControllerFX {
         resetMsg(errorMsg);
         this.currentSession = session;
 
-        //recupero l'utente corrente
+        //recupero l'utente corrente e le sue notifiche
         hostBean = (HostBean) SessionManager.getSessionManager().getSessionFromId(currentSession).getUser();
         NotificationsController notificationsController = new NotificationsController();
         notifications = notificationsController.getNotifications(hostBean);

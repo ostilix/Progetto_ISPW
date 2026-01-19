@@ -7,6 +7,7 @@ import com.nestaway.model.*;
 import java.time.ZoneId;
 import java.util.List;
 
+//converto oggetti Model a oggetti Bean
 public class ToBeanConverter {
 
     private ToBeanConverter() {
@@ -26,6 +27,7 @@ public class ToBeanConverter {
         stayBean.setNumBathrooms(stay.getNumBathrooms());
         stayBean.setHostUsername(stay.getHostUsername());
 
+        //se presente la lista delle disponibilità, itero e converto ogni elemento
         List<Availability> availabilities = stay.getAvailability();
 
         if (availabilities != null) {
@@ -36,6 +38,7 @@ public class ToBeanConverter {
             stayBean.setAvailability(availabilityBean);
         }
 
+        //se presente la lista delle recensioni, converto ogni elemento
         if (stay.getReviews() != null) {
             List<ReviewBean> reviewBeans = stay.getReviews().stream()
                     .map(ToBeanConverter::fromReviewToReviewBean)

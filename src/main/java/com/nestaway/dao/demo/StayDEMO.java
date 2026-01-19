@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.GENERIC;
-
+//implementazione dell'interfaccia DAO
 public class StayDEMO implements StayDAO {
 
     @Override
@@ -24,7 +24,7 @@ public class StayDEMO implements StayDAO {
                     return stay;
                 }
             }
-            return null;
+            return null; //non trovato
         } catch (Exception e) {
             throw new DAOException("Error in selectStay: " + e.getMessage(), e, GENERIC);
         }
@@ -71,9 +71,9 @@ public class StayDEMO implements StayDAO {
             for (Stay stay : allStays) {
                 //filtro per citta e capienza
                 if (stay.getCity().equalsIgnoreCase(city) && stay.getMaxGuests() >= numGuests) {
-
+                    //carico disponibilità
                     refreshAvailability(stay);
-
+                    //delego al model
                     if (stay.isAvailableInRange(checkIn, checkOut)) {
                         result.add(stay);
                     }
@@ -87,11 +87,13 @@ public class StayDEMO implements StayDAO {
 
     private void refreshAvailability(Stay stay) {
         List<Availability> stayAvailabilities = new ArrayList<>();
+        //cerco availability dello stay
         for (Availability a : MemoryDatabase.getAvailabilities()) {
             if (a.getIdStay().equals(stay.getIdStay())) {
                 stayAvailabilities.add(a);
             }
         }
+        //imposto la lista aggiornata nello stay
         stay.setAvailability(stayAvailabilities);
     }
 }

@@ -15,10 +15,12 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 //un solo page manager, gestsisce l'unica finestra aperta dell'applicazione
 public class PageManagerSingleton {
 
     private final Stage primaryStage;
+    //stack per la cronologia di navigazione(Last In First Out)
     private static final Deque<String> viewStack = new ArrayDeque<>();
     private static PageManagerSingleton instance = null;
 
@@ -32,34 +34,44 @@ public class PageManagerSingleton {
         }
         return instance;
     }
-
+    //navigo verso la nuova vista e la aggiungo in cima allo stack
     public void goNext(String fxmlPath, Integer session)  throws OperationFailedException, NotFoundException {
+        //aggiungo alla cronologia
         viewStack.push(fxmlPath);
         changeView(fxmlPath, session);
     }
 
     public void goBack(Integer session)  throws OperationFailedException, NotFoundException{
         if (!viewStack.isEmpty()) {
+            //rimuovo la vista attuale
             viewStack.pop();
+            //vedo qual è la vista precedente
             String previousView = viewStack.peek();
+            //carico la vista precedente
             changeView(previousView, session);
         }
     }
 
     public void goHome(Integer session)  throws OperationFailedException, NotFoundException{
         if(!viewStack.isEmpty()){
+            //prendo l'ultima vista dello stack (Home)
             String home = viewStack.reversed().pop();
             setHome(home, session);
         }
     }
 
     public void setHome(String fxmlPath, Integer session)  throws OperationFailedException, NotFoundException{
+        //salvo stack vecchio per eventuale rollback
         Deque<String> oldStack = new ArrayDeque<>(viewStack);
         try {
+            //pulisco lo stack
             viewStack.clear();
+            //inserisco la nuova home
             viewStack.push(fxmlPath);
+            //carico la vista
             changeView(fxmlPath, session);
         } catch (OperationFailedException | NotFoundException e){
+            //rollback in caso di fallimento
             viewStack.clear();
             viewStack.addAll(oldStack);
             throw e;
@@ -68,22 +80,27 @@ public class PageManagerSingleton {
 
     public void changeView(String fxmlPath, Integer session) throws OperationFailedException, NotFoundException {
         try {
+            //preparo il loader
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
+            //recupero il controller JavaFX associato al file FXML
             AbstractGUIControllerFX controller = loader.getController();
+            //inizializzo il controller passandogli la sessione corrente
             controller.initialize(session);
 
+            //creo la nuova scena
             Scene scene = new Scene(root);
+            //imposto la scena sullo stage principale
             primaryStage.setScene(scene);
             primaryStage.setTitle("NestAway");
 
-            // Imposta dimensioni massime disponibili (full screen con bordi visibili)
+            //imposto dimensioni massime disponibili
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             primaryStage.setX(screenBounds.getMinX());
             primaryStage.setY(screenBounds.getMinY());
             primaryStage.setWidth(screenBounds.getWidth());
             primaryStage.setHeight(screenBounds.getHeight());
-
+            //mostro la finestra
             primaryStage.show();
         } catch (IOException | IllegalStateException | NullPointerException e) {
             viewStack.pop();

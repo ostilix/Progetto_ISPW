@@ -10,9 +10,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-//una sola istanza di connessione al DB
+//un solo punto di accesso per la connessione al DB
 public class SingletonConnector {
+    //static per mantenere l'unica istanza della connessione
     private static Connection connection = null;
+    //credenziali del db
     private static final String CONNECTION_SETTINGS = "src/main/resources/properties/db.properties";
     //privato perche nessuno possa fare new SingletonConnector()
     private SingletonConnector() {}
@@ -20,7 +22,7 @@ public class SingletonConnector {
     //se due thread chiedono la connessione, uno aspetta
     public static synchronized Connection getConnection() throws ConnectionException {
         if (connection == null) {
-            //apro il file properties
+            //apro il file properties di configurazione
             try (InputStream input = new FileInputStream(CONNECTION_SETTINGS)) {
                 Properties properties = new Properties();
                 properties.load(input);

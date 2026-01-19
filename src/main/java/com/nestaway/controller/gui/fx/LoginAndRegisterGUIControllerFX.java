@@ -57,12 +57,16 @@ public class LoginAndRegisterGUIControllerFX extends AbstractGUIControllerFX {
             return;
         }
         try{
+            //creo UserBean temporaneo
             UserBean userBean = new UserBean();
             userBean.setUsername(loginInfo[0]);
             userBean.setPassword(loginInfo[1]);
+            //chiamo controller applicativo
             LoginController loginController = new LoginController();
             userBean = loginController.login(userBean);
+            //imposto la nuova home
             PageManagerSingleton.getInstance().setHome(FilesFXML.HOST_HOME.getPath(), currentSession);
+            //salvo utente loggato nella sessione
             SessionManager.getSessionManager().getSessionFromId(currentSession).setUser(userBean);
         } catch (IncorrectDataException | NotFoundException e) {
             setMsg(loginMessage, e.getMessage());
@@ -75,12 +79,14 @@ public class LoginAndRegisterGUIControllerFX extends AbstractGUIControllerFX {
     public void signupAction(){
         resetMsg(errorMsg, loginMessage, signupMessage);
 
+        //validazione campi
         String [] strings = {firstname.getText(), lastname.getText(), email.getText(), paypal.getText(), user.getText(), password.getText()};
         if(strings[0].isEmpty() || strings[1].isEmpty() || strings[2].isEmpty() || strings[3].isEmpty() || strings[4].isEmpty() || strings[5].isEmpty()) {
             setMsg(signupMessage, "Please fill in all fields!");
             return;
         }
         try{
+            //creo hostBean
             HostBean hostBean = new HostBean();
             hostBean.setFirstName(strings[0]);
             hostBean.setLastName(strings[1]);
@@ -88,8 +94,10 @@ public class LoginAndRegisterGUIControllerFX extends AbstractGUIControllerFX {
             hostBean.setInfoPayPal(strings[3]);
             hostBean.setUsername(strings[4]);
             hostBean.setPassword(strings[5]);
+            //chiamo controller applicativo
             LoginController loginController = new LoginController();
             UserBean userBean = loginController.register(hostBean);
+            //login automatico
             PageManagerSingleton.getInstance().setHome(FilesFXML.HOST_HOME.getPath(), currentSession);
             SessionManager.getSessionManager().getSessionFromId(currentSession).setUser(userBean);
         } catch (IncorrectDataException | DuplicateEntryException e) {

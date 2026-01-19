@@ -6,6 +6,6 @@ import com.nestaway.model.Review;
 import java.util.List;
 
 public interface ReviewDAO {
-    public void insertReview(Review review) throws DAOException;
-    public List<Review> selectByStay(Integer idStay) throws DAOException;
+    void insertReview(Review review) throws DAOException;
+    List<Review> selectByStay(Integer idStay) throws DAOException;
 }

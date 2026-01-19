@@ -18,9 +18,9 @@ public class LoginController {
 
     public UserBean login(UserBean userBean) throws OperationFailedException, NotFoundException {
         try{
-            //creo Model User
+            //creo Model User temporaneo con le credenziali
             User user = new User(userBean.getUsername(), userBean.getPassword());
-            //tramite DAO cerco l'host con quelle credenziali
+            //tramite DAO cerco l'host(è un User) con quelle credenziali
             Host host = FactorySingletonDAO. getDefaultDAO().getHostDAO().selectHost(user.getUsername(), user.getPassword());
             if (host == null) {
                 throw new NotFoundException("User not found.");
@@ -28,9 +28,11 @@ public class LoginController {
             //converto Model Host in Bean Host per la GUI
             return ToBeanConverter.fromHostToHostBean(host);
         } catch (DAOException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.WARNING, e.getMessage(), e.getCause());
             throw new OperationFailedException();
         } catch (IncorrectDataException | EncryptionException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e.getCause());
             throw new OperationFailedException();
         }
@@ -38,7 +40,7 @@ public class LoginController {
 
     public UserBean register(HostBean hostBean) throws OperationFailedException, DuplicateEntryException {
         try{
-            //creo Model Host dai dati del Bean
+            //creo Model Host dai dati del Bean Host
             Host host = new Host(hostBean.getFirstName(), hostBean.getLastName(), hostBean.getEmailAddress(), hostBean.getUsername(), hostBean.getInfoPayPal(), hostBean.getPassword());
 
             //inserico l'host nel DB

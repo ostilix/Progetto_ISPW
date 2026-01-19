@@ -5,6 +5,7 @@ import com.nestaway.dao.demo.*;
 
 //concrete factory
 public class DEMOFactory extends FactorySingletonDAO {
+    //creo e restituisco implementazione DEMO dei DAO
     public AvailabilityDAO getAvailabilityDAO(){
         return new AvailabilityDEMO();
     }

@@ -11,13 +11,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione dell'interfaccia DAO
 public class BookingDEMO implements BookingDAO {
 
     @Override
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         try {
-            //verifico se esiste già
+            //verifico se esiste già, scorro la mappa indice (codice -> idStay)
             boolean exists = DemoIndex.getBookingStayMap().entrySet().stream().anyMatch(entry -> {
                         String code = entry.getKey();
                         Integer mappedIdStay = entry.getValue();
@@ -29,8 +29,9 @@ public class BookingDEMO implements BookingDAO {
             }
             //genero id
             int idBooking = nextId(idStay);
+            //imposto ID nel bean
             booking.setIdAndCodeBooking(idBooking);
-            //aggiungo la prenotazione
+            //aggiungo la prenotazione alla lista
             MemoryDatabase.getBookings().add(booking);
             //aggiorno indice
             DemoIndex.getBookingStayMap().put(booking.getCodeBooking(), idStay);
@@ -46,7 +47,7 @@ public class BookingDEMO implements BookingDAO {
         try {
             //trovo i codici delle prentazioni associati allo stay
             Set<String> codes = DemoIndex.getBookingStayMap().entrySet().stream().filter(entry -> entry.getValue().equals(idStay)).map(java.util.Map.Entry::getKey).collect(Collectors.toSet());
-
+            //filtro e ritorno nella lista
             return MemoryDatabase.getBookings().stream().filter(b -> codes.contains(b.getCodeBooking())).toList();
         } catch (Exception e) {
             throw new DAOException("Error in selectBookingByStay", e, GENERIC);
@@ -62,6 +63,7 @@ public class BookingDEMO implements BookingDAO {
         }
     }
 
+    //genero Id per le prenotazione di uno stay
     private int nextId(Integer idStay) {
         long count = DemoIndex.getBookingStayMap().values().stream().filter(stayId -> stayId.equals(idStay)).count();
         return (int) count + 1;

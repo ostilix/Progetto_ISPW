@@ -74,9 +74,9 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
 
     VBox[] reviewsCards;
 
-    List<ReviewBean> reviews;
+    List<ReviewBean> reviews; //cache recensioni
 
-    StayBean stay;
+    StayBean stay; //bean dell'alloggio corrente
 
     @FXML
     ImageView stayImage;
@@ -86,13 +86,16 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
     public void goBack() {
         resetMsg(errorMsg);
         try {
+            //pulisco la selezione dell'alloggio nella sessione
             SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(null);
+            //chiedo al pageManager di tornare alla pagina precedente
             PageManagerSingleton.getInstance().goBack(currentSession);
         } catch (OperationFailedException | NotFoundException e) {
             setMsg(errorMsg, e.getMessage());
         }
     }
 
+    //vado alla pagina di prenotazione
     @FXML
     public void bookStay() {
         goNext(FilesFXML.BOOKING.getPath());
@@ -103,13 +106,14 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
         setMsg(errorMsg, "Not implemented yet.");
     }
 
+    //popolo i campi e carico le recensioni
     public void initialize(Integer session) throws OperationFailedException {
         this.currentSession = session;
         resetMsg(errorMsg);
         //recupera l'alloggio dalla sessione
         stay = SessionManager.getSessionManager().getSessionFromId(currentSession).getStay();
 
-        //popola i dettagli dell'alloggio
+        //popola i dettagli dell'alloggio con i dati del bean
         title.setText(stay.getName());
         city.setText(stay.getCity());
         address.setText(stay.getAddress());
@@ -127,7 +131,7 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
         reviewsCards = new VBox[]{reviewCard1, reviewCard2, reviewCard3};
         int maxCards = 3;
 
-        //recupero le Review dal controller
+        //recupero le Review dal controller applicativo
         ReviewController reviewController = new ReviewController();
         reviews = reviewController.getReviewsByStay(stay.getIdStay());
 
@@ -139,6 +143,7 @@ public class StayDetailsGUIControllerFX extends AbstractGUIControllerFX {
         numberPage.setPageCount(numPages);
         numberPage.setMaxPageIndicatorCount(Math.min(numPages / 2, 10));
         numberPage.currentPageIndexProperty().addListener(((obs, oldIndex, newIndex) -> createPage(newIndex.intValue(), maxCards)));
+        //mostro la prima pagina
         createPage(0, maxCards);
     }
 

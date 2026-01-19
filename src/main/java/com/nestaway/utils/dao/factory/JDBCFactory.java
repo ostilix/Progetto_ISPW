@@ -5,7 +5,7 @@ import com.nestaway.dao.jdbc.*;
 
 //concrete factory, serve per comunicare con il DB
 public class JDBCFactory extends FactorySingletonDAO {
-
+    //creo e restituisco implementazione JDBC dei DAO
     public AvailabilityDAO getAvailabilityDAO(){
         return new AvailabilityJDBC();
     }

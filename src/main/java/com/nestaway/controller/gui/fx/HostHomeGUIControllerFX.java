@@ -15,6 +15,7 @@ public class HostHomeGUIControllerFX extends AbstractGUIControllerFX {
     @FXML
     Button settings;
 
+    //vai alla pagina delle notifiche
     @FXML
     public void viewNotifications(){
         goNext(FilesFXML.NOTIFICATION.getPath());

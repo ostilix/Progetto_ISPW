@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface StayDAO {
-    public Stay selectStay(Integer idStay) throws DAOException;
-    public List<Stay> selectStayByCity(String city) throws DAOException;
-    public List<Stay> selectStayByHost(String hostUsername) throws DAOException;
-    public List<Stay> selectAvailableStays(String city, LocalDate checkIn, LocalDate checkOut, int numGuests) throws DAOException;
+    Stay selectStay(Integer idStay) throws DAOException;
+    List<Stay> selectStayByCity(String city) throws DAOException;
+    List<Stay> selectStayByHost(String hostUsername) throws DAOException;
+    List<Stay> selectAvailableStays(String city, LocalDate checkIn, LocalDate checkOut, int numGuests) throws DAOException;
 }

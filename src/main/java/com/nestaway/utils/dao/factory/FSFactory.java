@@ -5,6 +5,7 @@ import com.nestaway.dao.fs.*;
 
 //concrete factory, comunico tramite file CSV
 public class FSFactory extends FactorySingletonDAO {
+    //creo e restituisco implementazione FS dei DAO
     public AvailabilityDAO getAvailabilityDAO(){
         return new AvailabilityFS();
     }

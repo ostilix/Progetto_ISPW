@@ -17,7 +17,7 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
 
     public LoginAndRegisterGUIControllerCLI(Integer session, ReturningHome returningHome){
         this.currentSession = session;
-        this.returningHome = returningHome;
+        this.returningHome = returningHome; //oggetto passato tra i controller per gestire flusso di ritorno alla home
     }
 
     public void start(){
@@ -44,7 +44,7 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
             UserBean user = new UserBean();
             user.setUsername(loginInfo[0]);
             user.setPassword(loginInfo[1]);
-            //chiamo il controller
+            //chiamo il controller applicativo
             LoginController loginController = new LoginController();
             user = loginController.login(user);
             //salvo utente loggato nella sessione
@@ -66,6 +66,7 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
         try {
             //raccolgo dati registrazione
             String [] registerInfo = view.register();
+            //controllo campi
             if(registerInfo[0].isEmpty() || registerInfo[1].isEmpty() || registerInfo[2].isEmpty() || registerInfo[3].isEmpty() || registerInfo[4].isEmpty() || registerInfo[5].isEmpty()) {
                 view.showMessage("Please fill in all fields!");
             }
@@ -77,7 +78,7 @@ public class LoginAndRegisterGUIControllerCLI extends AbstractGUIControllerCLI {
             host.setUsername(registerInfo[3]);
             host.setInfoPayPal(registerInfo[4]);
             host.setPassword(registerInfo[5]);
-            //chiamo il controller
+            //chiamo il controller applicativo
             LoginController loginController = new LoginController();
             UserBean user = loginController.register(host);
             //login automatico dopo la registrazione

@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.nestaway.exception.dao.TypeDAOException.GENERIC;
-
+//implementazione interfaccia DAO
 public class ReviewFS implements ReviewDAO {
 
     private static final String FILE_PATH = "src/main/resources/data/Review.csv";
     private final CSVHandler csvHandler = new CSVHandler(FILE_PATH, ";");
 
+    //inserisco recensione
     @Override
     public void insertReview(Review review) throws DAOException {
         try {
@@ -28,16 +29,20 @@ public class ReviewFS implements ReviewDAO {
         }
     }
 
+    //seleziono per idStay
     @Override
     public List<Review> selectByStay(Integer idStay) throws DAOException {
         try {
+            //filtro per colonna 5 = idStay
             List<String[]> found = csvHandler.find(r -> r[5].equals(String.valueOf(idStay)));
+            //converto e aggiungo alla lista
             return found.stream().map(this::fromCsvRecord).collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             throw new DAOException("Error reading reviews from FS: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //da CSV a oggetto
     private Review fromCsvRecord(String[] r) {
         Review review = new Review(
                 r[1],
@@ -50,6 +55,7 @@ public class ReviewFS implements ReviewDAO {
         return review;
     }
 
+    //da oggetto a CSV
     private String[] toCsvRecord(Review review) {
         return new String[] {
                 review.getIdReview().toString(),

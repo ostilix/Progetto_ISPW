@@ -19,12 +19,13 @@ import java.util.List;
 public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
     private final BookingView bookingView = new BookingView();
     private final StayBean stay;
-    private List<AvailabilityBean> availabilities;
+    private List<AvailabilityBean> availabilities; //cache disponibilità
 
     public BookingGUIControllerCLI(Integer session, ReturningHome returningHome) {
         this.currentSession = session;
+        //recupero alloggio selezionato dalla sessione
         this.stay = SessionManager.getSessionManager().getSessionFromId(session).getStay();
-        this.returningHome = returningHome;
+        this.returningHome = returningHome;//oggetto passati tra i controller per gestire flusso di ritorno alla home
     }
 
     @Override
@@ -70,17 +71,18 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
         start();
     }
 
+    //raccoldo dati utente e chiamo controller applicativo
     public void bookStay() {
         try {
-            //raccolgo dati dall'utente
+            //raccolgo dati dall'utente tramite view
             String[] data = bookingView.insertBookingData();
             BookingBean booking = new BookingBean();
-
+            //controllo campi
             if (data[0].isEmpty() || data[1].isEmpty() || data[2].isEmpty() || data[3].isEmpty() || data[4].isEmpty()) {
                 throw new IncorrectDataException("All fields are required!");
             }
 
-            //popolo il Bean
+            //popolo il Bean con dati input e dati sessione
             booking.setFirstName(data[0]);
             booking.setLastName(data[1]);
             booking.setEmailAddress(data[2]);
@@ -91,12 +93,15 @@ public class BookingGUIControllerCLI extends AbstractGUIControllerCLI {
             booking.setOnlinePayment(Boolean.valueOf(data[4]));
 
             BookStayController controller = new BookStayController();
+            //ricarico disponibilità
             this.availabilities = controller.findAvailability(stay);
+            //filtro quelle nel range per validarle
             List<AvailabilityBean> filtered = availabilities.stream()
                     .filter(a -> !a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckIn()) && a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckOut())).toList();
 
-            //chiamo il controller
+            //chiamo il controller applicativo
             controller.sendReservation(stay, booking, filtered);
+            //mostra codice di prenotazione
             bookingView.showMessage("Booking successful! Your booking code is: " + booking.getCodeBooking());
         } catch (OperationFailedException | DuplicateEntryException e) {
             bookingView.showError(e.getMessage());

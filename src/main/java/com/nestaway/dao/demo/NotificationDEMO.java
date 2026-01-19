@@ -9,7 +9,7 @@ import com.nestaway.utils.dao.MemoryDatabase;
 import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione dell'interfaccia DAO
 public class NotificationDEMO implements NotificationDAO {
 
     @Override
@@ -18,6 +18,7 @@ public class NotificationDEMO implements NotificationDAO {
             return MemoryDatabase.getNotifications().stream().filter(n -> {
                 //cerco lo stay collegato alla notifica
                 Stay stay = MemoryDatabase.getStays().stream().filter(s -> s.getName().equals(n.getNameStay())).findFirst().orElse(null);
+                //verifico se esiste e se appartiene all'host
                 return stay != null && stay.getHostUsername().equals(idHost);
             }).toList();
         } catch (Exception e) {
@@ -63,6 +64,7 @@ public class NotificationDEMO implements NotificationDAO {
     @Override
     public void deleteNotificationByHost(String idHost) throws DAOException {
         try {
+            //rimuovo notifiche che appartengono a stay di quell'host
             MemoryDatabase.getNotifications().removeIf(n -> {
                 Stay stay = MemoryDatabase.getStays().stream().filter(s -> s.getName().equals(n.getNameStay())).findFirst().orElse(null);
                 return stay != null && stay.getHostUsername().equals(idHost);

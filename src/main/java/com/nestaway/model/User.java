@@ -25,6 +25,7 @@ public class User{
     }
 
     public boolean checkPassword(String password) throws EncryptionException {
+        //cifro la password e confronto
         return this.password.equals(encrypt(password));
     }
 

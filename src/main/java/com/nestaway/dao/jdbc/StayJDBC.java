@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.GENERIC;
-
+//implementazione interfaccia DAO
 public class StayJDBC implements StayDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_ID = "IdStay";
     private static final String COLUMN_NAME = "NameStay";
     private static final String COLUMN_DESCRIPTION = "Description";
@@ -28,12 +28,15 @@ public class StayJDBC implements StayDAO {
     private static final String COLUMN_NUMBATHROOMS = "NumBathrooms";
     private static final String COLUMN_HOSTUSERNAME = "HostUsername";
 
+    //cerco Stay per città
     @Override
     public List<Stay> selectStayByCity(String city) throws DAOException {
+        //inizializzo lista vuota
         List<Stay> stays = new ArrayList<>();
         try (PreparedStatement pstmt = StayQueries.selectStayByCity(SingletonConnector.getConnection(), city)) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    //aggiungo alla lista
                     stays.add(fromResultSet(rs));
                 }
             }
@@ -43,12 +46,15 @@ public class StayJDBC implements StayDAO {
         }
     }
 
+    //cerco stay per host
     @Override
     public List<Stay> selectStayByHost(String idHost) throws DAOException {
+        //inizializzo lista vuota
         List<Stay> stays = new ArrayList<>();
         try (PreparedStatement pstmt = StayQueries.selectStayByHost(SingletonConnector.getConnection(), idHost)) {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    //aggiungo alla lista
                     stays.add(fromResultSet(rs));
                 }
             }
@@ -58,6 +64,7 @@ public class StayJDBC implements StayDAO {
         }
     }
 
+    //recupero singolo stay
     @Override
     public Stay selectStay(Integer idStay) throws DAOException {
         try (PreparedStatement pstmt = StayQueries.selectStay(SingletonConnector.getConnection(), idStay)) {
@@ -72,18 +79,21 @@ public class StayJDBC implements StayDAO {
         }
     }
 
+    //cerco alloggi disponibili
     @Override
     public List<Stay> selectAvailableStays(String city, LocalDate checkIn, LocalDate checkOut, int numGuests) throws DAOException {
+        //inizializzo lista vuota
         List<Stay> availableStays = new ArrayList<>();
-
+        //calcolo numero notti
         long numNights = ChronoUnit.DAYS.between(checkIn, checkOut);
         if (numNights <= 0) return availableStays;
-
+        //preparo la query
         try (PreparedStatement pstmt = StayQueries.selectAvailableStays(SingletonConnector.getConnection(), city, numGuests, checkIn, checkOut, numNights)) {
-
+            //eseguo la query
             try (ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
+                    //aggiungo alla lista
                     availableStays.add(fromResultSet(rs));
                 }
             }

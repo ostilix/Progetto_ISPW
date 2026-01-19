@@ -4,11 +4,12 @@ import com.nestaway.bean.StayBean;
 import com.nestaway.bean.UserBean;
 
 import java.time.LocalDate;
-
+//rappresenta una singola sessione utente
 public class Session {
 
-    private UserBean user;
-    private StayBean stay;
+    private UserBean user; //utente loggato
+    private StayBean stay; //alloggio selezionato
+    //parametri di ricerca
     private String city;
     private LocalDate checkIn;
     private LocalDate checkOut;
@@ -62,6 +63,7 @@ public class Session {
         return numGuests;
     }
 
+    //reset completo della sessione
     public void reset(){
         this.user = null;
         this.stay = null;

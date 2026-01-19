@@ -139,14 +139,14 @@ public class Stay{
 
     public boolean isAvailableInRange(LocalDate start, LocalDate end) {
         if (availability == null) return false;
-
+        //estraggo insieme delle date disponibili
         Set<LocalDate> availableDates = availability.stream()
                 .filter(Availability::getIsAvailable)
                 .map(Availability::getDate)
                 .collect(Collectors.toSet());
-
+        //genero la lista delle date
         List<LocalDate> requestedDates = start.datesUntil(end.plusDays(1)).toList();
-
+        //verifico se l'insieme della lista contiene tutte le date di interesse
         return availableDates.containsAll(requestedDates);
     }
 

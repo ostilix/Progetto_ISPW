@@ -13,9 +13,9 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//implementazione interfaccia DAO
 public class BookingJDBC implements BookingDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_FIRSTNAME = "FirstName";
     private static final String COLUMN_LASTNAME = "LastName";
     private static final String COLUMN_EMAIL = "EmailAddress";
@@ -29,18 +29,20 @@ public class BookingJDBC implements BookingDAO {
     @Override
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         int id;
+        //conto le prenotazione per generare ID nuovo
         try (PreparedStatement pstmtCount = BookingQueries.countBookings(SingletonConnector.getConnection(), idStay)){
             try (ResultSet rs = pstmtCount.executeQuery()) {
 
                 if (rs.next()) {
                     id = rs.getInt(1) + 1;
+                    //imposto ID al Booking
                     booking.setIdAndCodeBooking(id);
                 } else {
                     throw new DAOException("Unable to calculate booking ID", GENERIC);
                 }
             }
 
-            //inserimento Booking
+            //inserimento Booking nel DB
             try (PreparedStatement pstmtInsert = BookingQueries.insertBooking(SingletonConnector.getConnection(), booking.getCodeBooking(), booking.getFirstName(), booking.getLastName(), booking.getEmailAddress(), booking.getTelephone(), booking.getCheckInDate(), booking.getCheckOutDate(), booking.getNumGuests(), (Boolean.TRUE.equals(booking.getOnlinePayment()) ? 1 : 0), idStay)) {
                 pstmtInsert.executeUpdate();
             }
@@ -54,6 +56,7 @@ public class BookingJDBC implements BookingDAO {
         }
     }
 
+    //ritorna lista prenotazione per alloggio
     @Override
     public List<Booking> selectBookingByStay(Integer idStay) throws DAOException {
         List<Booking> bookings = new ArrayList<>();
@@ -69,6 +72,7 @@ public class BookingJDBC implements BookingDAO {
         }
     }
 
+    //trova Booking tramite codice
     @Override
     public Booking selectBookingByCode(String codeBooking) throws DAOException {
         try (PreparedStatement pstmt = BookingQueries.selectBookingByCode(SingletonConnector.getConnection(), codeBooking)){

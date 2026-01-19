@@ -14,20 +14,25 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione interfaccia DAO
 public class StayFS implements StayDAO {
 
     private static final String FILE_PATH = "src/main/resources/data/Stay.csv";
     private final CSVHandler csvHandler = new CSVHandler(FILE_PATH, ";");
 
+    //trovo alloggio per idStay
     @Override
     public Stay selectStay(Integer idStay) throws DAOException {
         try {
+            //leggo tutto il file
             List<String[]> rows = csvHandler.readAll();
+            //itero per ogni riga
             for (String[] r : rows) {
                 if (Integer.parseInt(r[0]) == idStay) {
+                    //se trovo mathc id allora converto
                     Stay stay = fromCsvRecord(r);
                     stay.setTransientParams();
+                    //carico i dati collegati
                     addReviewsAndAvailability(stay);
                     return stay;
                 }
@@ -38,6 +43,7 @@ public class StayFS implements StayDAO {
         }
     }
 
+    //trovo alloggio per città
     @Override
     public List<Stay> selectStayByCity(String city) throws DAOException {
         try {
@@ -74,15 +80,17 @@ public class StayFS implements StayDAO {
         }
     }
 
+    //inserisco nuovo alloggio
     public void insertStay(Stay stay) throws DAOException {
         try {
             List<String[]> allRows = csvHandler.readAll();
+            //controllo duplicati
             for (String[] r : allRows) {
                 if (r[0].equals(stay.getName()) && r[3].equals(stay.getCity())) {
                     throw new DAOException("Stay already exists", DUPLICATE);
                 }
             }
-
+            //calcolo id
             int newId = allRows.isEmpty() ? 1 : allRows.stream()
                     .mapToInt(r -> Integer.parseInt(r[0]))
                     .max()
@@ -96,6 +104,7 @@ public class StayFS implements StayDAO {
         }
     }
 
+    //ricerco per disponibilità
     @Override
     public List<Stay> selectAvailableStays(String city, LocalDate checkIn, LocalDate checkOut, int numGuests) throws DAOException {
         try {
@@ -103,12 +112,14 @@ public class StayFS implements StayDAO {
             List<String[]> rows = csvHandler.readAll();
 
             for (String[] r : rows) {
+                //primo filtro, citta e max guests
                 if (r[3].equalsIgnoreCase(city) && Integer.parseInt(r[6]) >= numGuests) {
-
+                    //creo oggetto stay temporaneo
                     Stay stay = fromCsvRecord(r);
                     stay.setTransientParams();
+                    //carico tutte le disponibilità
                     addReviewsAndAvailability(stay);
-
+                    //verifico disponibilità tramite model
                     if (stay.isAvailableInRange(checkIn, checkOut)) {
                         availableStays.add(stay);
                     }
@@ -121,6 +132,7 @@ public class StayFS implements StayDAO {
         }
     }
 
+    //da oggetto a CSV
     private String[] toCsvRecord(Stay stay) {
         return new String[]{
                 stay.getName(),
@@ -136,6 +148,7 @@ public class StayFS implements StayDAO {
         };
     }
 
+    //da CSV a oggetto
     private Stay fromCsvRecord(String[] r) {
         return new Stay(
                 Integer.parseInt(r[0]),
@@ -151,15 +164,16 @@ public class StayFS implements StayDAO {
         );
     }
 
+    //caricamento dati correlati
     private void addReviewsAndAvailability(Stay stay) throws DAOException {
         if (stay == null) return;
-
+        //istanzo i dao che mi servono
         ReviewFS reviewFS = new ReviewFS();
         AvailabilityFS availabilityFS = new AvailabilityFS();
-
+        //recupero liste che mi servono
         List<Review> reviews = reviewFS.selectByStay(stay.getIdStay());
         List<Availability> availability = availabilityFS.selectByStay(stay.getIdStay());
-
+        //aggiungo le liste allo stay
         stay.addReviews(reviews);
         stay.addAvailabilities(availability);
     }

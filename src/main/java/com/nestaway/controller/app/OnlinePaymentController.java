@@ -6,7 +6,7 @@ import com.nestaway.engineering.payment.PaymentAPI;
 import com.nestaway.engineering.payment.PaymentRequest;
 import com.nestaway.model.Host;
 
-//osservo API di pagamento
+//Estende Observer per ricevere callback dall'API di pagamento
 public class OnlinePaymentController extends Observer {
 
     private PaymentAPI paymentAPI; //API astratta
@@ -24,8 +24,9 @@ public class OnlinePaymentController extends Observer {
         long startTime = System.currentTimeMillis();
         long timeout = 60000L;
 
+        //avvio processo pagamento simulato
         paymentAPI.processPayment(request);
-        //attendo la risposta
+        //attendo la risposta finche response non viene popolato dal metodo update()
         while(response == null) {
             if(System.currentTimeMillis() - startTime > timeout) {
                 return false;
@@ -34,10 +35,11 @@ public class OnlinePaymentController extends Observer {
         return response;
     }
 
+    //metodo callback dell'observer, chiamato dal subject(paymentAPI) quando lo stato cambia
     @Override
     protected void update(){
         if (paymentAPI != null){
-            //leggo il risultato dall'API
+            //leggo il risultato dall'API e sblocco ciclo while
             response = paymentAPI.getResponse();
         }
     }

@@ -20,9 +20,10 @@ import java.util.logging.Logger;
 import static com.nestaway.exception.dao.TypeDAOException.DUPLICATE;
 
 public class NotificationsController {
-
+    //riferimenti ai dao per recuperare e salvare i dati
     private final NotificationDAO notificationDAO;
 
+    //inizializzo il DAO recuperandolo dalla factory, disaccoppio il controller dalla specifica implementazione scelta
     public NotificationsController() {
         this.notificationDAO = FactorySingletonDAO.getDefaultDAO().getNotificationDAO();
     }
@@ -47,9 +48,10 @@ public class NotificationsController {
                 //ricostruisco oggetto Model dai dati Bean
                 notifs.add(new Notification(TypeNotif.valueOf(notif.getType()), notif.getNameStay(), notif.getBookingCode(), notif.getDateAndTime().toLocalDateTime()));
             }
-            //elimino nel DB
+            //chiamo il DAO per eliminare nel db
             notificationDAO.deleteNotification(hostBean.getUsername(), notifs);
         } catch (DAOException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.WARNING, e.getMessage(), e.getCause());
             throw new OperationFailedException();
         }
@@ -64,7 +66,7 @@ public class NotificationsController {
         }
     }
 
-    //recupero notifiche da mostrare
+    //recupero notifiche da mostrare nella GUI
     public List<NotificationBean> getNotifications(HostBean hostBean) throws OperationFailedException, NotFoundException {
         try {
             List<Notification> notifs = notificationDAO.selectNotifications(hostBean.getUsername());

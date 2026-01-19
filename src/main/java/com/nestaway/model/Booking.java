@@ -86,6 +86,7 @@ public class Booking {
     }
 
     private String generateCodeBooking(Integer idBooking) {
+        //formatto id a 4 cifre (1 -> 0001)
         String numStr = String.format("%04d", idBooking);
 
         char[] digits = new char[4];
@@ -98,7 +99,7 @@ public class Booking {
 
         Random random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
-
+        //genero una stringa casuale di 10 caratteri
         for (int i = 0; i < 10; i++) {
             int index = random.nextInt(characterSet.length());
             sb.append(characterSet.charAt(index));
@@ -107,7 +108,7 @@ public class Booking {
         String randomString = sb.toString();
 
         char[] resultArray = randomString.toCharArray();
-
+        //inserisco le cifre dell'ID in posizioni fisse ma mescolate
         resultArray[1] = digits[3];
         resultArray[3] = digits[0];
         resultArray[5] = digits[2];
@@ -119,7 +120,7 @@ public class Booking {
     private Integer reverseCodeBooking(String codeBooking) {
         char[] resultArray = codeBooking.toCharArray();
         char[] digits = new char[4];
-
+        //estraggo le cifre
         digits[0] = resultArray[3];
         digits[1] = resultArray[1];
         digits[2] = resultArray[7];

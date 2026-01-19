@@ -66,7 +66,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
         LocalDate checkIn;
         LocalDate checkOut;
         int guests;
-
+        //converto e valido le date
         try {
             checkIn = LocalDate.parse(checkInStr);
             checkOut = LocalDate.parse(checkOutStr);
@@ -84,7 +84,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
             setMsg(message, "Check-out must be after check-in.");
             return;
         }
-
+        //converto e valido guests
         try {
             guests = Integer.parseInt(guestsStr);
             if (guests <= 0) {
@@ -110,7 +110,7 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
         }
     }
 
-
+    //inizializzo controller
     @Override
     public void initialize(Integer session) {
         this.currentSession = session;
@@ -119,9 +119,9 @@ public class HomeGUIControllerFX extends AbstractGUIControllerFX{
         backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
         backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
 
-        //se l'utente ha già cercato qualcosa recupero quei dati e li rimetto automaticamente nei campi
+        //recupero sessione
         Session userSession = SessionManager.getSessionManager().getSessionFromId(currentSession);
-
+        //se l'utente ha già cercato qualcosa recupero quei dati e li rimetto automaticamente nei campi
         if (userSession.getCity() != null) {
             searchCity.setText(userSession.getCity());
         }

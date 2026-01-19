@@ -12,8 +12,9 @@ import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
 
+//implementazione dell'interfaccia DAO
 public class AvailabilityJDBC implements AvailabilityDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_ID = "IdAvailability";
     private static final String COLUMN_DATE = "Date";
     private static final String COLUMN_IS_AVAILABLE = "IsAvailable";
@@ -21,11 +22,14 @@ public class AvailabilityJDBC implements AvailabilityDAO {
 
     @Override
     public List<Availability> selectByStay(Integer idStay) throws DAOException {
+        //inizializzo lista vuota
         List<Availability> availabilities = new ArrayList<>();
+        //preparo la query
         try (PreparedStatement pstmt = AvailabilityQueries.selectByStay(SingletonConnector.getConnection(), idStay)){
+            //eseguo la query
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    //converto riga DB in oggetto Availability
+                    //converto riga DB in oggetto Availability e lo aggiungo alla lista
                     availabilities.add(fromResultSet(rs));
                 }
             }
@@ -37,10 +41,14 @@ public class AvailabilityJDBC implements AvailabilityDAO {
 
     @Override
     public List<Availability> selectInRange(Integer idStay, LocalDate from, LocalDate to) throws DAOException {
+        //inizializzo lista vuota
         List<Availability> availabilities = new ArrayList<>();
+        //preparo la query
         try (PreparedStatement pstmt = AvailabilityQueries.selectInRange(SingletonConnector.getConnection(), idStay, from, to)){
+            //eseguo la query
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    //converto riga DB in oggetto Availability e lo aggiungo alla lista
                     availabilities.add(fromResultSet(rs));
                 }
             }
@@ -52,7 +60,9 @@ public class AvailabilityJDBC implements AvailabilityDAO {
 
     @Override
     public void updateAvailability(LocalDate checkIn, LocalDate checkOut, Integer idStay) throws DAOException {
+        //preparo la query
         try (PreparedStatement pstmt = AvailabilityQueries.updateAvailability(SingletonConnector.getConnection(), checkIn, checkOut, idStay)) {
+            //restituisce numero di righe modificate
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Error in updateAvailability " + e.getMessage(), e, GENERIC);
@@ -62,7 +72,9 @@ public class AvailabilityJDBC implements AvailabilityDAO {
 
     @Override
     public void deleteAvailability(Integer idStay, LocalDate date) throws DAOException {
+        //preparo la query
         try (PreparedStatement pstmt = AvailabilityQueries.deleteAvailability(SingletonConnector.getConnection(), idStay, date)) {
+            //restituisce numero di righe modificate
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Error in deleteAvailability: " + e.getMessage(), e, GENERIC);
@@ -71,7 +83,9 @@ public class AvailabilityJDBC implements AvailabilityDAO {
 
     @Override
     public void deleteAllByStay(Integer idStay) throws DAOException {
+        //preparo la query
         try (PreparedStatement pstmt = AvailabilityQueries.deleteAllByStay(SingletonConnector.getConnection(), idStay)) {
+            //restituisce numero di righe modificate
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Error in deleteAllByStay: " + e.getMessage(), e, GENERIC);

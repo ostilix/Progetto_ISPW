@@ -13,7 +13,7 @@ public class Main {
     private static final String DAO_TYPE = "DAO_TYPE";
 
     public static void main(String[] args) throws IOException {
-
+        //leggo informazioni dal file .properties
         try (InputStream input = new FileInputStream(LOGGER_SETTINGS)) {
             LogManager.getLogManager().readConfiguration(input);
         }
@@ -36,7 +36,7 @@ public class Main {
             daoType = scanner.nextLine().trim().toUpperCase();
         }
 
-        //variabili lette da FactorySingletonDAO
+        //variabili globali lette da FactorySingletonDAO, MainCLI e MainFX
         System.setProperty(VIEW_TYPE, viewType);
         System.setProperty(DAO_TYPE, daoType);
 

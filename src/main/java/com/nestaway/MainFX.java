@@ -27,9 +27,10 @@ public class MainFX extends Application {
                 throw new OperationFailedException("Failed to load demo data");
             }
         }
-
+        //creo la sessione
         currentSession = SessionManager.getSessionManager().createSession();
         stage.setMaximized(true);
+        //inizializzo lo stage e carico la home
         PageManagerSingleton.getInstance(stage).setHome(FilesFXML.HOME.getPath(), currentSession);
     }
 

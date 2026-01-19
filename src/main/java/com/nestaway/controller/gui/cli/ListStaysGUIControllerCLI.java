@@ -15,19 +15,20 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
 
     private final ListStaysView listStaysView = new ListStaysView();
     private List<StayBean> stays; //utilizzata come "cache" locale degli alloggi trovati
+    //parametri di ricerca cached per non richiamare sessione ogni volta
     private final String city;
     private final LocalDate checkInDate;
     private final LocalDate checkOutDate;
     private final Integer numGuests;
 
-    //recupero i parametri dalla Sessione
+    //costruttore: recupero i parametri salvati nella sessione dal controller precedente
     ListStaysGUIControllerCLI(Integer session, ReturningHome returningHome){
         this.currentSession = session;
         this.city = SessionManager.getSessionManager().getSessionFromId(session).getCity();
         this.checkInDate = SessionManager.getSessionManager().getSessionFromId(session).getCheckIn();
         this.checkOutDate = SessionManager.getSessionManager().getSessionFromId(session).getCheckOut();
         this.numGuests = SessionManager.getSessionManager().getSessionFromId(session).getNumGuests();
-        this.returningHome = returningHome;
+        this.returningHome = returningHome;//oggetto passati tra i controller per gestire flusso di ritorno alla home
     }
 
     @Override
@@ -56,8 +57,9 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
         }
     }
 
-    //mostro gli alloggi trovati
+    //formatto e invio la lista degli alloggi alla view
     private void showStays() {
+        //preparo array di stringhe
         String[] staysFormatted = new String[this.stays.size()];
         int i = 0;
         for (StayBean stay : this.stays) {
@@ -77,25 +79,27 @@ public class ListStaysGUIControllerCLI extends AbstractGUIControllerCLI{
 
         //passo l'array di stringhe alla View
         listStaysView.showStays(staysFormatted);
+        //ricarico il menu
         start();
     }
 
     private void selectStay() {
-        //recupero il numero dell'alloggio
+        //recupero il numero dell'alloggio dalla view e lo verifico
         int num = listStaysView.selectStay();
         if (num < 1 || num > stays.size()) {
             listStaysView.showMessage("Stay not found!");
             start();
         } else {
             //recupero il Bean dell'alloggio corrispondente
-            StayBean stay = stays.get(num - 1);
+            StayBean stay = stays.get(num - 1); //-1 perche la lista parte da 0
             if (stay != null) {
-                //salvo l'alloggio scelto nella sessione
+                //salvo l'alloggio scelto nella sessione per i prossimi controller
                 SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(stay);
-
+                //passo al prossimo controller
                 StayDetailsGUIControllerCLI stayDetailsController = new StayDetailsGUIControllerCLI(currentSession, returningHome);
                 stayDetailsController.start();
             }
+            //resetto la selezione per pulizia
             SessionManager.getSessionManager().getSessionFromId(currentSession).resetStay();
             //ricarico la pagina se non devo tornare alla home
             if (Boolean.FALSE.equals(returningHome.getReturningHome())) {

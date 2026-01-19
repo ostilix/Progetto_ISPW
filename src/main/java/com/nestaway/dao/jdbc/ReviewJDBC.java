@@ -10,21 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione interfaccia DAO
 public class ReviewJDBC implements ReviewDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_CODE_BOOKING = "BookingCode";
     private static final String COLUMN_RATING = "Rating";
     private static final String COLUMN_COMMENT = "Comment";
     private static final String COLUMN_DATE = "Date";
     private static final String COLUMN_ID_STAY = "idStay";
 
+    //seleziono review per alloggio
     @Override
     public List<Review> selectByStay(Integer idStay) throws DAOException {
+        //inizializzo lista vuota
         List<Review> reviews = new ArrayList<>();
         try (PreparedStatement pstmt = ReviewQueries.selectByStay(SingletonConnector.getConnection(), idStay)){
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    //aggiungo alla lista
                     reviews.add(fromResultSet(rs));
                 }
             }
@@ -34,6 +37,7 @@ public class ReviewJDBC implements ReviewDAO {
         }
     }
 
+    //aggiungo review
     @Override
     public void insertReview(Review review) throws DAOException {
         try (PreparedStatement pstmt = ReviewQueries.insertReview(SingletonConnector.getConnection(), review.getBookingCode(), review.getRating(), review.getComment(), review.getDate(), review.getIdStay())) {

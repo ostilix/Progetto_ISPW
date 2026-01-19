@@ -28,13 +28,13 @@ import static com.nestaway.exception.dao.TypeDAOException.DUPLICATE;
 import static com.nestaway.exception.dao.TypeDAOException.NOT_AVAILABLE;
 
 public class BookStayController {
-
+    //riferimenti ai dao per recuperare e salvare i dati
     private final BookingDAO bookingDAO;
     private final StayDAO stayDAO;
     private final HostDAO hostDAO;
     private final AvailabilityDAO availabilityDAO;
 
-    //inizializzo i DAO
+    //inizializzo i DAO recuperandoli dalla factory, disaccoppio il controller dalla specifica implementazione scelta
     public BookStayController() {
         this.bookingDAO = FactorySingletonDAO.getDefaultDAO().getBookingDAO();
         this.stayDAO = FactorySingletonDAO.getDefaultDAO().getStayDAO();
@@ -42,6 +42,7 @@ public class BookStayController {
         this.availabilityDAO = FactorySingletonDAO.getDefaultDAO().getAvailabilityDAO();
     }
 
+    //ritorno stayBean per passarli alla view
     public List<StayBean> findStays(String city, LocalDate from, LocalDate to, Integer numGuests) throws OperationFailedException, NotFoundException {
         try {
             //cerco alloggi disponibili tramite DAO
@@ -59,14 +60,17 @@ public class BookStayController {
             return result;
 
         } catch (DAOException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.WARNING, e.getMessage(), e.getCause());
             throw new OperationFailedException("DAO error in findStays");
         } catch (IncorrectDataException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e.getCause());
             throw new OperationFailedException("Invalid data in findStays");
         }
     }
 
+    //recupero le disponibilità
     public List<AvailabilityBean> findAvailability(StayBean stayBean) throws OperationFailedException, NotFoundException {
         try {
             //verifico se l'alloggio esiste tramite DAO
@@ -91,21 +95,24 @@ public class BookStayController {
             return availabilityBeans;
 
         } catch (DAOException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.WARNING, e.getMessage(), e.getCause());
             throw new OperationFailedException("DAO error in findAvailability");
         } catch (IncorrectDataException e) {
+            //loggo l'errore tecnico ma rilancio un'eccezione generica all'utente
             Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e.getCause());
             throw new OperationFailedException("Invalid data in findAvailability");
         }
     }
 
+    //gestisco prenotazione
     public void sendReservation(StayBean stayBean, BookingBean bookingBean, List<AvailabilityBean> availabilityBean)
             throws OperationFailedException, DAOException, DuplicateEntryException {
         try {
             //verifico la validità delle date
             checkBookingValid(bookingBean, availabilityBean);
 
-            //recupero l'host per pagamento e notifica
+            //recupero dati host per pagamento e notifica
             Host host = hostDAO.selectHost(stayBean.getHostUsername());
             if (host == null) {
                 String msg = "Inconsistent data. Host not found for stay: " + stayBean.getIdStay();
@@ -123,6 +130,7 @@ public class BookStayController {
                 Double pricePerNight = stayBean.getPricePerNight();
                 long numNights = ChronoUnit.DAYS.between(bookingBean.getCheckInDate(), bookingBean.getCheckOutDate());
                 Double amount = pricePerNight * numNights;
+                //delego al controller del pagamento
                 OnlinePaymentController onlinePaymentController = new OnlinePaymentController();
                 //simulo pagamento
                 boolean response = onlinePaymentController.payPayPal(host, amount, "Booking for stay: " + stayBean.getName());
@@ -156,6 +164,7 @@ public class BookStayController {
         }
     }
 
+    //helper per aggiornare date disponibilità
     public void updateAvailabilityDates(StayBean stayBean, LocalDate checkInDate, LocalDate checkOutDate)
             throws OperationFailedException {
         try {
@@ -166,6 +175,7 @@ public class BookStayController {
         }
     }
 
+    //validazione interna
     private void checkBookingValid(BookingBean bookingBean, List<AvailabilityBean> availabilityBeans) throws OperationFailedException {
         LocalDate checkIn = bookingBean.getCheckInDate();
         LocalDate checkOut = bookingBean.getCheckOutDate();
@@ -183,8 +193,7 @@ public class BookStayController {
 
         //per ogni giorno compreso nelle date verifico che sia disponibile
         for (LocalDate date : requestedDates) {
-            boolean foundAvailable = availabilityBeans.stream()
-                    .anyMatch(a -> date.equals(a.getDate()) && Boolean.TRUE.equals(a.getIsAvailable()));
+            boolean foundAvailable = availabilityBeans.stream().anyMatch(a -> date.equals(a.getDate()) && Boolean.TRUE.equals(a.getIsAvailable()));
             if (!foundAvailable) {
                 throw new OperationFailedException("Date not available for booking: " + date);
             }

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+//usata dai DAO, gestore generico dei file CSV
 public class CSVHandler{
-    private final String filePath;
+    private final String filePath; //percorso del file sul disco
     private final String delimiter;
 
     public CSVHandler(String filePath, String delimiter) {

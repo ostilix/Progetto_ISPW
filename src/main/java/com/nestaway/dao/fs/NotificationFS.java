@@ -14,30 +14,35 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione interfaccia DAO
 public class NotificationFS implements NotificationDAO {
 
     private static final String FILE_PATH = "src/main/resources/data/Notification.csv";
 
+    //recupero notifiche per idHost
     @Override
     public List<Notification> selectNotifications(String idHost) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
+            //filtro dove colonna 3 = idHost
             List<String[]> results = handler.find(r -> r[3].equals(idHost));
+            //converto e aggiungo alla lista
             return results.stream().map(this::fromCsvRecord).collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             throw new DAOException("Error in selectNotifications: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //aggiungo notifica
     @Override
     public void addNotification(String idHost, Notification notification) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
+            //controllo duplicati
             if (!handler.find(uniqueKey(idHost, notification)).isEmpty()) {
                 throw new DAOException("Notification already exists", DUPLICATE);
             }
-
+            //aggiungo alla lista
             List<String[]> rows = new ArrayList<>();
             rows.add(toCsvRecord(idHost, notification));
             handler.writeAll(rows);
@@ -46,37 +51,43 @@ public class NotificationFS implements NotificationDAO {
         }
     }
 
+    //cancello notifiche
     @Override
     public void deleteNotification(String idHost, List<Notification> notifications) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
             List<Predicate<String[]>> predicates = new ArrayList<>();
-
+            //per ogni notifica da cancellare, creo un predicato unico per identificarla
             for (Notification n : notifications) {
                 predicates.add(uniqueKey(idHost, n));
             }
-
+            //chiamo remove passando la lista di condizioni
             handler.remove(predicates);
         } catch (IOException e) {
             throw new DAOException("Error in deleteNotification: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //cancello tutte le notifiche
     @Override
     public void deleteNotificationByHost(String idHost) throws DAOException {
         try{
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
+            //rimuovo se colonna 3 = idHost
             handler.remove(n -> n[3].equals(idHost));
         } catch (IOException e) {
             throw new DAOException("Error in deleteNotification: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //confronta tutti i campi per assicurarmi che sia proprio quella notifica
     private Predicate<String[]> uniqueKey(String idHost, Notification n) {
         String dateTimeStr = n.getDateAndTime().toString();
+        //controllo i campi
         return r -> r[0].equals(n.getType().name()) && r[1].equals(n.getNameStay()) && r[2].equals(n.getBookingCode()) && r[3].equals(idHost) && r[4].equals(dateTimeStr);
     }
 
+    //da CSV a oggetto
     private Notification fromCsvRecord(String[] r) {
         return new Notification(
                 TypeNotif.valueOf(r[0]),
@@ -85,6 +96,7 @@ public class NotificationFS implements NotificationDAO {
                 LocalDateTime.parse(r[4]));
     }
 
+    //da oggetto a CSV
     private String[] toCsvRecord(String idHost, Notification n) {
         return new String[]{
                 n.getType().name(),

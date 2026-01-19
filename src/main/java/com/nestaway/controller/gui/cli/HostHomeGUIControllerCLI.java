@@ -9,7 +9,7 @@ public class HostHomeGUIControllerCLI extends AbstractGUIControllerCLI {
 
     public HostHomeGUIControllerCLI(Integer session, ReturningHome returningHome){
         this.currentSession = session;
-        this.returningHome = returningHome;
+        this.returningHome = returningHome;//oggetto passati tra i controller per gestire flusso di ritorno alla home
     }
 
     public void start(){
@@ -28,14 +28,17 @@ public class HostHomeGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void stay() {
         view.showError("View Stays not implemented yet!");
+        //controllo per rimanere nel menu
         if(Boolean.FALSE.equals(returningHome.getReturningHome())) {
             start();
         }
     }
 
     private void notif() {
+        //delego al controller delle notifiche
         NotificationsGUIControllerCLI notificationsGUIController = new NotificationsGUIControllerCLI(currentSession, returningHome);
         notificationsGUIController.start();
+        //controllo per rimanere nel menu
         if(Boolean.FALSE.equals(returningHome.getReturningHome())) {
             start();
         }
@@ -43,6 +46,7 @@ public class HostHomeGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void setting() {
         view.showError("View Settings not implemented yet!");
+        //controllo per rimanere nel menu
         if(Boolean.FALSE.equals(returningHome.getReturningHome())) {
             start();
         }

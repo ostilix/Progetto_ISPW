@@ -45,14 +45,15 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
     @FXML
     Label message;
 
-    ToggleGroup paymentMethod;
+    ToggleGroup paymentMethod; //gruppo per mutua esclusione radio
 
-    StayBean stay;
+    StayBean stay; //alloggio selezionato
 
     @FXML
     public void goBack() {
         resetMsg(errorMsg, message);
         try {
+            //chiedo al pageManager di tornare alla pagina precedente, l'alloggio nella sessione rimane
             PageManagerSingleton.getInstance().goBack(currentSession);
         } catch (OperationFailedException | NotFoundException e) {
             setMsg(errorMsg,e.getMessage());
@@ -63,16 +64,16 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
     public void bookStay() {
         resetMsg(errorMsg, message);
         try {
-            //raccolgo i dati dal form
+            //raccolgo i dati dal form e creo il BookingBean
             BookingBean booking = getBooking();
             BookStayController bookStayController = new BookStayController();
 
-            //recupero le disponibilità
+            //recupero le disponibilità aggiornate
             List<AvailabilityBean> allAvailabilities = bookStayController.findAvailability(stay);
             //filtro le disponibilità per il periodo richiesto
             List<AvailabilityBean> filteredAvailabilities = allAvailabilities.stream().filter(a -> !a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckIn()) && a.getDate().isBefore(SessionManager.getSessionManager().getSessionFromId(currentSession).getCheckOut())).toList();
 
-            //invio la prenotazione
+            //invio la prenotazione al controller applicativo
             bookStayController.sendReservation(stay, booking, filteredAvailabilities);
             //mostro il risultato
             setMsg(message, "Booking successful! Your booking code is: " + booking.getCodeBooking());
@@ -83,6 +84,7 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
         }
     }
 
+    //helper per estrarre e validare i dati dal form
     private BookingBean getBooking() throws IncorrectDataException {
         try {
             String[] data = {firstname.getText(), lastname.getText(), email.getText(), telephone.getText()};
@@ -92,6 +94,7 @@ public class BookingGUIControllerFX extends AbstractGUIControllerFX {
                 throw new IncorrectDataException("Please select a payment method!");
             }
 
+            //popolo il bean con i dati del form e quelli della sessione
             BookingBean booking = new BookingBean();
             booking.setFirstName(data[0]);
             booking.setLastName(data[1]);

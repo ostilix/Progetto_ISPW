@@ -2,7 +2,7 @@ package com.nestaway.utils.dao.factory;
 
 import com.nestaway.dao.*;
 
-//abstract factory e singleton
+//abstract factory e singleton, unico punto di accesso per ottenere i dao
 public abstract class FactorySingletonDAO {
 
     //instanzio il singleton
@@ -11,6 +11,7 @@ public abstract class FactorySingletonDAO {
     protected FactorySingletonDAO() {
     }
 
+    //usato dai controller applicativi per sapere quale DAO utilizzare
     public static synchronized FactorySingletonDAO getDefaultDAO() {
         //controllo se l'istanza esiste già
         if (instance == null) {

@@ -22,15 +22,16 @@ public class NotificationsGUIControllerCLI extends AbstractGUIControllerCLI {
 
     public NotificationsGUIControllerCLI(Integer session, ReturningHome returningHome){
         this.currentSession = session;
-        this.user = SessionManager.getSessionManager().getSessionFromId(session).getUser();
-        this.returningHome = returningHome;
+        this.user = SessionManager.getSessionManager().getSessionFromId(session).getUser(); //recupero utente dalla sessione
+        this.returningHome = returningHome;//oggetto passato tra i controller per gestire flusso di ritorno alla home
     }
 
     public void start(){
 
         try {
-            //scarico le notifiche dell'utente interessato
+            //scarico le notifiche dell'utente interessato dal controller applicativo
             NotificationsController notificationsController = new NotificationsController();
+            //cast a host perchè solo loro ricevono notifiche
             notifications = notificationsController.getNotifications((HostBean) user);
 
             int choice;
@@ -65,7 +66,7 @@ public class NotificationsGUIControllerCLI extends AbstractGUIControllerCLI {
 
     private void deleteNotifs() {
         try {
-            //chiedo quali cancellare
+            //chiedo quali cancellare (lista di indici)
             List<Integer> numDelete = view.deleteNotification();
             NotificationsController notificationsController = new NotificationsController();
             //cancella tutte le notifiche se -1

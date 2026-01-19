@@ -8,12 +8,12 @@ import com.nestaway.view.cli.HomeView;
 import java.time.LocalDate;
 
 public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
-
+    //istanza della View per gestire I/O
     private final HomeView view = new HomeView();
 
     public HomeGUIControllerCLI(Integer session, ReturningHome returningHome) {
-        this.currentSession = session; //salvo la sessione
-        this.returningHome = returningHome;
+        this.currentSession = session; //serve per recuperare dati utente da SessionManager
+        this.returningHome = returningHome; //oggetto passati tra i controller per gestire flusso di ritorno alla home
     }
 
     public void start() {
@@ -29,9 +29,9 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
     }
 
     private void loginPage() {
-        //creo il controller
+        //creo il controller successivo passando sessione e gestore navigazione
         LoginAndRegisterGUIControllerCLI loginAndRegisterGUIController = new LoginAndRegisterGUIControllerCLI(currentSession, returningHome);
-        //avvio il controller
+        //avvio il controller nuovo
         loginAndRegisterGUIController.start();
         //resetto il flag quando start() ritorna (utente loggato fuori)
         returningHome.setReturningHome(false);
@@ -43,7 +43,7 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
         //chiedo alla View i dati per la ricerca
         String[] data = view.searchStay();
 
-        //estraggo i dati
+        //estraggo i dati ritornati dalla view
         String city = data[0].trim();
         String checkInStr = data[1].trim();
         String checkOutStr = data[2].trim();
@@ -52,7 +52,7 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
         //valido i dati
         if (city.isEmpty() || checkInStr.isEmpty() || checkOutStr.isEmpty() || guestsStr.isEmpty()) {
             System.out.println("All fields are required. Please try again.");
-            start();
+            start(); //ricarico il menu in caso di errore
             return;
         }
 
@@ -100,6 +100,7 @@ public class HomeGUIControllerCLI extends AbstractGUIControllerCLI {
         }
 
         //salvo i dati per la ricerca nella sessione
+        //permette al controller successivo di accedere ai dati senza passarli nel costruttore
         Session session = SessionManager.getSessionManager().getSessionFromId(currentSession);
         session.setCity(city);
         session.setCheckIn(checkIn);

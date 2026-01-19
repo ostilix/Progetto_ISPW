@@ -13,11 +13,12 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
-
+//implementazione interfaccia DAO
 public class BookingFS implements BookingDAO {
 
     private static final String FILE_PATH = "src/main/resources/data/Booking.csv";
 
+    //aggiungo un nuovo booking
     @Override
     public Booking addBooking(Integer idStay, Booking booking) throws DAOException {
         try {
@@ -27,8 +28,8 @@ public class BookingFS implements BookingDAO {
                 throw new DAOException("Booking already exists", DUPLICATE);
             }
 
+            //leggo tutte le stringhe per trovare ID più alto
             List<String[]> allRows = handler.readAll();
-            //leggo id più alto al momento
             int maxId = 0;
             for (String[] row : allRows) {
                 int currentId = parseBookingId(row);
@@ -38,12 +39,12 @@ public class BookingFS implements BookingDAO {
             }
 
             int newId = maxId + 1;
-
+            //aggiorno Booking
             booking.setIdAndCodeBooking(newId);
 
             //scrivo in coda
             List<String[]> rows = new ArrayList<>();
-            rows.add(toCsvRecord(idStay, booking));
+            rows.add(toCsvRecord(idStay, booking)); //converto in array CSV
             handler.writeAll(rows);
             return booking;
         } catch (IOException e) {
@@ -51,31 +52,38 @@ public class BookingFS implements BookingDAO {
         }
     }
 
+    //cerco Booking per alloggio
     @Override
     public List<Booking> selectBookingByStay(Integer idStay) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
+            //filtro le righe dove colonna 9 corrisponde a ID
             List<String[]> found = handler.find(r -> r[9].equals(String.valueOf(idStay)));
+            //converto array string in oggetto Booking e aggiungo alla lista
             return found.stream().map(this::fromCsvRecord).collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             throw new DAOException("Error in selectBookingByStay: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //cerco Booking per codice prenotazione
     @Override
     public Booking selectBookingByCode(String codeBooking) throws DAOException {
         try {
             CSVHandler handler = new CSVHandler(FILE_PATH, ";");
+            //cerco la riga dove la colonna 3 corrisponde al codice
             List<String[]> found = handler.find(r -> r[3].equals(codeBooking));
             if (found.isEmpty()) {
                 return null;
             }
+            //converto e ritorno l'oggetto trovato
             return fromCsvRecord(found.get(0));
         } catch (IOException e) {
             throw new DAOException("Error in selectBookingByCode: " + e.getMessage(), e, GENERIC);
         }
     }
 
+    //converto BookingID in int
     private int parseBookingId(String[] row) throws DAOException {
         try {
             return Integer.parseInt(row[2]);
@@ -84,10 +92,12 @@ public class BookingFS implements BookingDAO {
         }
     }
 
+    //verifico se esiste un Booking con stessa mail o telefono
     private Predicate<String[]> uniquePredicate(String idStay, String email, String telephone) {
         return r -> (r[9].equals(idStay) && (r[4].equals(email) || r[5].equals(telephone)));
     }
 
+    //converto da CSV a oggetto Booking
     private Booking fromCsvRecord(String[] r) {
         Booking booking = new Booking(
                 r[0],
@@ -102,7 +112,7 @@ public class BookingFS implements BookingDAO {
         return booking;
     }
 
-
+    //converto da oggetto Booking a CSV
     private String[] toCsvRecord(Integer idStay, Booking booking) {
         return new String[]{
                 booking.getFirstName(),

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.DUPLICATE;
 import static com.nestaway.exception.dao.TypeDAOException.GENERIC;
-
+//implementazione dell'interfaccia DAO
 public class ReviewDEMO implements ReviewDAO {
 
     @Override

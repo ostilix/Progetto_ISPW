@@ -13,13 +13,15 @@ import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
 
+//implementazione interfaccia DAO
 public class NotificationJDBC implements NotificationDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_TYPE = "Type";
     private static final String COLUMN_DATETIME = "DateTime";
     private static final String COLUMN_NAMESTAY = "NameStay";
     private static final String COLUMN_BOOKINGCODE = "BookingCode";
 
+    //recupero lista notifiche per host
     @Override
     public List<Notification> selectNotifications(String idHost) throws DAOException {
         List<Notification> notifications = new ArrayList<>();
@@ -35,6 +37,7 @@ public class NotificationJDBC implements NotificationDAO {
         }
     }
 
+    //inserisco notifica nel db
     @Override
     public void addNotification(String idHost, Notification notification) throws DAOException {
         try {
@@ -54,6 +57,7 @@ public class NotificationJDBC implements NotificationDAO {
     public void deleteNotification(String idHost, List<Notification> notifications) throws DAOException {
         try {
             Connection conn = SingletonConnector.getConnection();
+            //itero sulla lista ed eseguo delete
             for (Notification notif : notifications) {
                 Timestamp timestamp = Timestamp.valueOf(notif.getDateAndTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 try (PreparedStatement pstmt = NotificationQueries.deleteNotification(conn, idHost, notif.getNameStay(), notif.getBookingCode(), timestamp)) {

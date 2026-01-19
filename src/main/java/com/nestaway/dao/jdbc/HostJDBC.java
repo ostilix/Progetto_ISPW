@@ -15,8 +15,9 @@ import java.util.List;
 
 import static com.nestaway.exception.dao.TypeDAOException.*;
 
+//implementazione interfaccia DAO
 public class HostJDBC implements HostDAO {
-
+    //mappo i nomi delle colonne del db
     private static final String COLUMN_USERNAME = "Username";
     private static final String COLUMN_PASSWORD = "Password";
     private static final String COLUMN_FIRSTNAME = "FirstName";
@@ -24,6 +25,7 @@ public class HostJDBC implements HostDAO {
     private static final String COLUMN_EMAIL = "EmailAddress";
     private static final String COLUMN_PAYPAL = "InfoPayPal";
 
+    //ritorna Host tramite ID
     @Override
     public Host selectHost(String idHost) throws DAOException {
         Host host = null;
@@ -42,6 +44,7 @@ public class HostJDBC implements HostDAO {
         return host;
     }
 
+    //cerco host tramite username e pass
     @Override
     public Host selectHost(String username, String password) throws DAOException {
         Host host = null;
@@ -55,7 +58,7 @@ public class HostJDBC implements HostDAO {
         } catch (SQLException | EncryptionException e) {
             throw new DAOException("Error in selectHost: " + e.getMessage(), e, GENERIC);
         }
-
+        //carico anche le notifiche e gli alloggi dell'host
         addNotifAndStays(host);
         return host;
     }
@@ -82,10 +85,14 @@ public class HostJDBC implements HostDAO {
         if(host == null) {
             return;
         }
+        //istanzo i dao che mi servono
         NotificationJDBC notificationJDBC = new NotificationJDBC();
         StayJDBC stayJDBC = new StayJDBC();
+        //recupero lista alloggi
         List<Stay> stays = stayJDBC.selectStayByHost(host.getUsername());
+        //recupero lista notifiche
         List<Notification> notifications = notificationJDBC.selectNotifications(host.getUsername());
+        //aggiungo le liste all'host
         host.addStay(stays);
         host.addNotification(notifications);
     }

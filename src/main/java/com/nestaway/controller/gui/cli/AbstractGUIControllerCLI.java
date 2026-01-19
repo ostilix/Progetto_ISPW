@@ -6,7 +6,7 @@ import com.nestaway.utils.view.cli.ReturningHome;
 public abstract class AbstractGUIControllerCLI {
 
     protected Integer currentSession; //serve per recuperare dati utente da SessionManager
-    protected ReturningHome returningHome;
+    protected ReturningHome returningHome; //oggetto passati tra i controller per gestire flusso di ritorno alla home
 
     //avvio il menu
     public abstract void start();
@@ -18,7 +18,7 @@ public abstract class AbstractGUIControllerCLI {
         System.out.println("Exiting...Bye bye!");
         System.exit(0);
     }
-
+    //imposto il flag a false segnalando al controller chiamante di riprendere il controllo
     protected void goBack() {
         returningHome.setReturningHome(false);
     }
@@ -26,6 +26,7 @@ public abstract class AbstractGUIControllerCLI {
     protected void goHome() {
         //resetto parametri di ricerca della sessione ma mantengo il login
         SessionManager.getSessionManager().getSessionFromId(currentSession).softReset();
+        //risalgo lo stack dei controller fino a home
         returningHome.setReturningHome(true);
     }
 

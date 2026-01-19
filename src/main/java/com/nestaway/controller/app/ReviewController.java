@@ -19,10 +19,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ReviewController {
-
+    //riferimenti ai dao per recuperare e salvare i dati
     private final ReviewDAO reviewDAO;
     private final BookingDAO bookingDAO;
 
+    //inizializzo i DAO recuperandoli dalla factory, disaccoppio il controller dalla specifica implementazione scelta
     public ReviewController() {
         this.reviewDAO = FactorySingletonDAO.getDefaultDAO().getReviewDAO();
         this.bookingDAO = FactorySingletonDAO.getDefaultDAO().getBookingDAO();

@@ -66,7 +66,7 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
 
     VBox[] stayCards;
 
-    //lista degli alloggi recuperati
+    //lista locale degli alloggi recuperati
     List<StayBean> stays;
 
     @FXML
@@ -75,7 +75,7 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         Button button = (Button) stay.getSource();
         //recupero il nome dell'alloggio dal bottone cliccato
         String nameStay = button.getText();
-        //cerco l'alloggio
+        //cerco l'alloggio nella lista locale
         StayBean stayBean = searchStay(nameStay);
         //imposto l'alloggio selezionato nella sessione corrente
         SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(stayBean);
@@ -87,7 +87,9 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
     public void goBack() {
         resetMsg(errorMsg);
         try {
+            //pulisco la selezione dell'alloggio nella sessione
             SessionManager.getSessionManager().getSessionFromId(currentSession).setStay(null);
+            //chiedo al pageManager di tornare alla pagina precedente
             PageManagerSingleton.getInstance().goBack(currentSession);
         } catch (OperationFailedException | NotFoundException e) {
             setMsg(errorMsg, e.getMessage());
@@ -100,10 +102,11 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         stayImages = new ImageView[]{stayImage1, stayImage2, stayImage3, stayImage4, stayImage5, stayImage6};
         int maxCards = 6;
 
-        //chiamo il controller per cercare gli alloggi
+        //chiamo il controller applicativo per cercare gli alloggi con i parametri della sessione
         BookStayController bookStayController = new BookStayController();
         stays = bookStayController.findStays(SessionManager.getSessionManager().getSessionFromId(session).getCity(), SessionManager.getSessionManager().getSessionFromId(session).getCheckIn(), SessionManager.getSessionManager().getSessionFromId(session).getCheckOut(), SessionManager.getSessionManager().getSessionFromId(session).getNumGuests());
 
+        //calcolo numero pagine necessarie
         int numPages = (stays.size() / maxCards);
         if(stays.size() % maxCards != 0){
             numPages++;
@@ -130,7 +133,7 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         int max = Math.min(maxStays, stays.size() - pageIndex * maxStays);
 
         for (int i = 0; i < max; i++) {
-            //recupero il Bean corretto
+            //recupero il Bean corretto dalla lista globale usando l'offset
             StayBean stay = stays.get(pageIndex * maxStays + i);
             //rendo visibile la card
             stayCards[i].setVisible(true);
@@ -149,7 +152,7 @@ public class ListStaysGUIControllerFX extends  AbstractGUIControllerFX {
         }
     }
 
-
+    //helper per trovare stayBean dato il nome
     private StayBean searchStay(String stayName){
         for(StayBean stay : stays){
             if(stay.getName().equals(stayName)){

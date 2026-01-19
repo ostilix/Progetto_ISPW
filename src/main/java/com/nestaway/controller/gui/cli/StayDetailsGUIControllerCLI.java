@@ -12,9 +12,9 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
 
     public StayDetailsGUIControllerCLI(Integer session, ReturningHome returningHome) {
         this.currentSession = session;
-        //recupero alloggio dalla sessione
+        //recupero alloggio selezionato dalla sessione
         this.stay = SessionManager.getSessionManager().getSessionFromId(session).getStay();
-        this.returningHome = returningHome;
+        this.returningHome = returningHome;//oggetto passati tra i controller per gestire flusso di ritorno alla home
     }
 
     @Override
@@ -34,6 +34,7 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
         }
     }
 
+    //raccolgo i dati dal bean e li formatto per mostrarli
     private void showInfo() {
         //preparo l'array
         String[] info = {
@@ -56,6 +57,7 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
         if (stay.getReviews() == null || stay.getReviews().isEmpty()) {
             stayDetailsView.showReviews(new String[]{"No reviews available for this stay."});
         } else {
+            //formatto le recensioni collegate
             String[] reviewsFormatted = new String[stay.getReviews().size()];
             int i = 0;
             for (var review : stay.getReviews()) {
@@ -73,13 +75,14 @@ public class StayDetailsGUIControllerCLI extends AbstractGUIControllerCLI {
     }
 
     private void bookStay() {
+        //controllo di sicurezza
         StayBean stayBean = SessionManager.getSessionManager().getSessionFromId(currentSession).getStay();
         if (stayBean == null) {
             stayDetailsView.showError("No stay selected for booking.");
             start();
             return;
         }
-
+        //passo al controller della prenotazione
         BookingGUIControllerCLI bookingGUIController = new BookingGUIControllerCLI(currentSession, returningHome);
         bookingGUIController.start();
 

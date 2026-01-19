@@ -22,7 +22,7 @@ public abstract class AbstractGUIControllerFX {
     @FXML
     Button login;
 
-    //metodo per inizializzare i dati, chiamato dal PageManager dopo aver caricato il file FXML
+    //metodo per inizializzare i dati, chiamato dal PageManager dopo aver caricato il file FXML e creato il controller, serve a passare l'ID della sessione al controller
     public abstract void initialize(Integer session) throws OperationFailedException, NotFoundException;
 
     //metodo per mostrare i messaggi di errore
@@ -38,9 +38,9 @@ public abstract class AbstractGUIControllerFX {
     }
 
     public void goNext(String path){
-        resetMsg(errorMsg);
+        resetMsg(errorMsg); //pulisce eventuali errori precedenti
         try{
-            //delego al page manager il cambio scena
+            //delego al page manager (singleton) il cambio scena, passando la sessione corrente
             PageManagerSingleton.getInstance().goNext(path, currentSession);
         }catch (OperationFailedException | NotFoundException e){
             setMsg(errorMsg,e.getMessage());
@@ -53,7 +53,7 @@ public abstract class AbstractGUIControllerFX {
         //soft reset, pulisco i parametri di ricerca ma mantengo il login
         SessionManager.getSessionManager().getSessionFromId(currentSession).softReset();
         try{
-            //torno alla schermata principale dell'utente
+            //chiedo al pageManager di tornare alla schermata principale dell'utente
             PageManagerSingleton.getInstance().goHome(currentSession);
         }catch (OperationFailedException | NotFoundException e){
             setMsg(errorMsg,e.getMessage());
@@ -66,13 +66,14 @@ public abstract class AbstractGUIControllerFX {
         //reset completo, utente loggato fuori
         SessionManager.getSessionManager().getSessionFromId(currentSession).reset();
         try{
-            //torno alla home pubblica
+            //chiedo al pageManager di tornare alla home pubblica
             PageManagerSingleton.getInstance().setHome(FilesFXML.HOME.getPath(), currentSession);
         }catch (OperationFailedException | NotFoundException e){
             setMsg(errorMsg,e.getMessage());
         }
     }
 
+    //vado alla pagina di login
     @FXML
     public void login(){
         goNext(FilesFXML.LOGIN.getPath());
